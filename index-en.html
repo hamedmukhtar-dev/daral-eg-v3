@@ -1,18 +1,10 @@
-<!-- ==============================
-  Daral Global v3.1 — Egypt–Sudan Edition (AR / RTL)
-  File: index-ar.html
-  - زر اللغة يحوّل إلى: index-en.html
-  - واتساب افتراضي: مكتب مصر (Ops)
-  - الإرسال بالإيميل عبر mailto: info@daral-sd.com
-  - تحسينات: ألوان أهدى + Dropdown للطيران + تحقق تواريخ + تنسيق أكثر احترافية
-================================== -->
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دارال | بوابة عمليات مصر–السودان</title>
-  <meta name="description" content="دارال — طلبات السفر واللوجستيات بين مصر والسودان. نماذج منظمة + رقم مرجعي (REF) + توجيه عبر واتساب أو البريد الإلكتروني." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daral | Sudan & Egypt Terminal Services</title>
+  <meta name="description" content="Daral Terminal Services — Flights, Cargo (Door-to-Door), Land Transport (Sudan), Accommodation, and Meet & Assist. Fast request routing via WhatsApp." />
   <meta name="theme-color" content="#0b1220" />
 
   <!-- Tailwind -->
@@ -22,1188 +14,206 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- QR code generator -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Calm enterprise palette (more balanced + less harsh) */
-      --bg0:#0b1220;
-      --bg1:#0f172a;
-
-      --panel: rgba(255,255,255,.07);
-      --panel2: rgba(255,255,255,.085);
-      --panel3: rgba(255,255,255,.05);
-
-      --line: rgba(148,163,184,.18);
-      --line2: rgba(148,163,184,.26);
-
-      --ink:#e8edf5;
-      --muted:#a8b6cb;
-      --muted2:#93a4bc;
-
-      --sky:#38bdf8;   /* sky-400 */
-      --gold:#fbbf24;  /* amber-400 */
-      --mint:#34d399;  /* emerald-400 */
-      --danger:#fb7185;/* rose-400 */
-
-      --shadow: 0 22px 70px rgba(0,0,0,.35);
-      --radius: 28px;
+      --navy:#0b1220;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --bg:#f7fafc;
+      --card:rgba(255,255,255,.78);
+      --border:rgba(2,6,23,.08);
+      --gold:#f59e0b;
+      --cyan:#06b6d4;
     }
-
-    html,body{
-      height:100%;
-      background:var(--bg0);
-      color:var(--ink);
-      font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      scroll-behavior:smooth;
-    }
-
-    .bg-calm{
-      background:
-        radial-gradient(900px 520px at 12% 8%, rgba(56,189,248,.14), transparent 58%),
-        radial-gradient(900px 520px at 90% 0%, rgba(251,191,36,.10), transparent 55%),
-        radial-gradient(980px 740px at 70% 94%, rgba(52,211,153,.10), transparent 60%),
-        linear-gradient(180deg, rgba(15,23,42,1), rgba(11,18,32,1));
-    }
-
-    .glass{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .glass2{background:var(--panel2); border:1px solid var(--line);}
-    .glass3{background:var(--panel3); border:1px dashed rgba(148,163,184,.22);}
-
-    .chip{
-      border:1px solid rgba(148,163,184,.22);
-      background: rgba(255,255,255,.045);
-    }
-
-    .chip:hover{ border-color: rgba(148,163,184,.32); }
-
-    .field{
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(148,163,184,.24);
-      outline:none;
+    body{
+      font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
       color: var(--ink);
-      transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
     }
-    .field::placeholder{color: rgba(148,163,184,.78);}
-    .field:focus{
-      border-color: rgba(56,189,248,.58);
-      box-shadow: 0 0 0 4px rgba(56,189,248,.14);
+    .ar-font{ font-family: "Cairo", system-ui, sans-serif; }
+    .nile-bg{
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(1100px 420px at 18% 12%, rgba(6,182,212,.14), transparent 60%),
+        radial-gradient(900px 380px at 78% 18%, rgba(245,158,11,.10), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #f6f9ff 35%, #f7fafc 100%);
     }
-
-    .hidden{display:none;}
-    .soft-scroll::-webkit-scrollbar{height:10px;width:10px}
-    .soft-scroll::-webkit-scrollbar-thumb{background:rgba(148,163,184,.22);border-radius:999px}
-
-    .kbd{
-      border:1px solid rgba(148,163,184,.25);
-      background: rgba(255,255,255,.05);
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 800;
-      color: rgba(229,231,235,.9);
-      font-family: 'Outfit', ui-sans-serif, system-ui;
+    .glass{
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 48px rgba(2,6,23,.08);
     }
-
-    .link{
-      color: rgba(56,189,248,.95);
-      font-weight: 800;
+    .pill{ border:1px solid rgba(2,6,23,.1); background:rgba(255,255,255,.7); }
+    .btn{ transition:.18s ease; }
+    .btn:active{ transform:scale(.98); }
+    .input{
+      background:#fff;
+      border:1px solid rgba(2,6,23,.12);
+      outline:none;
     }
-    .link:hover{opacity:.88; text-decoration: underline;}
-
-    /* Better button hover */
-    .btn-grad{
-      background:linear-gradient(90deg, rgba(56,189,248,1), rgba(52,211,153,1));
-      color:#0b1220;
-      font-weight:900;
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    .input:focus{
+      border-color:rgba(6,182,212,.55);
+      box-shadow:0 0 0 4px rgba(6,182,212,.12);
     }
-    .btn-grad:hover{ transform: translateY(-1px); box-shadow: 0 18px 50px rgba(0,0,0,.32); opacity:.96; }
-
-    .btn-ghost{
-      transition: transform .15s ease, border-color .15s ease;
-    }
-    .btn-ghost:hover{ transform: translateY(-1px); border-color: rgba(148,163,184,.35); }
-
-    /* Small helper */
-    .hint{
-      color: rgba(163,178,199,.92);
-      font-size: 11px;
-      font-weight: 700;
-    }
+    section{ scroll-margin-top:140px; }
   </style>
-
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Daral (Dar Al Khartoum Travel & Tourism Co. Ltd)",
-    "email":"info@daral-sd.com",
-    "telephone":"+201113336672",
-    "areaServed":["Egypt","Sudan"],
-    "address":{
-      "@type":"PostalAddress",
-      "streetAddress":"32–33 Ground Floor, Marhij Building, Al Jumhuriya Street",
-      "addressLocality":"Khartoum",
-      "addressCountry":"Sudan"
-    }
-  }
-  </script>
 </head>
 
-<body class="bg-calm min-h-screen">
+<body class="nile-bg">
 
-  <!-- =========================
-    CONFIG (edit here)
-  ========================== -->
-  <script>
-    // WhatsApp numbers in international format WITHOUT '+'
-    const OPS_WA_EG = "201113336672";
-    const OPS_WA_SD = "249912399919";
-
-    // Phone with '+'
-    const OPS_TEL_EG = "+201113336672";
-    const OPS_TEL_SD = "+249912399919";
-
-    // Email
-    const OPS_EMAIL = "info@daral-sd.com";
-
-    // Arabic lines
-    const OPERATING_HOURS = "ساعات العمل: حسب التوقيت المحلي";
-    const TYPICAL_RESPONSE = "زمن الاستجابة المعتاد: خلال ساعات العمل";
-    const COMPLIANCE_LINE = "التأكيد النهائي يخضع للتوفر والإجراءات المطلوبة (OFAC/KYC عند اللزوم).";
-    const NO_CARD_LINE = "لا يتم جمع بيانات البطاقات على هذا الموقع.";
-  </script>
-
-  <!-- =========================
-    TOP BAR
-  ========================== -->
-  <div class="border-b" style="border-color: var(--line);">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-      <!-- Brand -->
+<!-- ================= HEADER ================= -->
+<div class="sticky top-0 z-50">
+  <div class="bg-white/80 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="h-10 w-10 rounded-2xl flex items-center justify-center"
-             style="background:rgba(56,189,248,.10); border:1px solid var(--line);">
-          <i class="fa-solid fa-compass text-sky-300"></i>
-        </div>
-        <div class="leading-tight">
-          <div class="text-xs font-extrabold tracking-widest uppercase text-slate-200" style="font-family:'Outfit',sans-serif;">DARAL</div>
-          <div class="text-[11px] font-semibold tracking-wide" style="color:rgba(163,178,199,.95);">
-            بوابة العمليات — مصر ↔ السودان
-          </div>
-        </div>
-
-        <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold ml-2">
-          <i class="fa-solid fa-location-dot ml-1" style="color:var(--gold)"></i> مصر ↔ السودان
-        </span>
-      </div>
-
-      <!-- Actions -->
-      <div class="flex items-center gap-2 flex-wrap justify-end">
-        <a id="btnEmailTop" href="#" class="chip btn-ghost px-3 py-2 rounded-xl text-xs font-extrabold">
-          <i class="fa-solid fa-envelope ml-1" style="color:rgba(163,178,199,.9)"></i>
-          <span id="emailTextTop">info@daral-sd.com</span>
-        </a>
-
-        <button id="btnCopyEmailTop" class="chip btn-ghost px-3 py-2 rounded-xl text-xs font-extrabold">
-          <i class="fa-solid fa-copy ml-1" style="color:rgba(163,178,199,.9)"></i> نسخ
-        </button>
-
-        <a id="btnCallEG" href="#" class="chip btn-ghost px-3 py-2 rounded-xl text-xs font-extrabold">
-          <i class="fa-solid fa-phone ml-1" style="color:rgba(163,178,199,.9)"></i> اتصال (مصر)
-        </a>
-
-        <a id="btnWAEG" href="#" target="_blank"
-           class="btn-grad px-3 py-2 rounded-xl text-xs">
-          <i class="fa-brands fa-whatsapp ml-1"></i> واتساب العمليات (مصر)
-        </a>
-
-        <a id="btnWASD" href="#" target="_blank" class="chip btn-ghost px-3 py-2 rounded-xl text-xs font-extrabold">
-          <i class="fa-brands fa-whatsapp ml-1" style="color:var(--mint)"></i> واتساب (السودان)
-        </a>
-
-        <!-- Language switch -->
-        <a href="index-en.html"
-           class="chip btn-ghost px-3 py-2 rounded-xl text-xs font-extrabold"
-           title="Switch to English">
-          <i class="fa-solid fa-language ml-1" style="color:rgba(163,178,199,.9)"></i> English
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================
-    HERO
-  ========================== -->
-  <header class="max-w-7xl mx-auto px-4 pt-10 pb-8">
-    <div class="glass rounded-[28px] p-7 md:p-10">
-      <div class="grid md:grid-cols-12 gap-7 items-center">
-        <div class="md:col-span-7">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
-              <i class="fa-solid fa-shield-heart ml-1" style="color:var(--sky)"></i> توجيه عمليات واضح
-            </span>
-            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
-              <i class="fa-solid fa-clipboard-check ml-1" style="color:var(--mint)"></i> نماذج منظمة
-            </span>
-            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
-              <i class="fa-solid fa-hashtag ml-1" style="color:var(--gold)"></i> رقم مرجعي (REF)
-            </span>
-            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
-              <i class="fa-solid fa-lock ml-1" style="color:rgba(163,178,199,.95)"></i> بدون جمع بيانات بطاقات
-            </span>
-          </div>
-
-          <h1 class="mt-5 text-4xl md:text-5xl font-black tracking-tight">
-            طلبات السفر واللوجستيات بين مصر والسودان — بسرعة ووضوح.
-          </h1>
-
-          <p class="mt-4 text-base md:text-lg font-semibold" style="color:var(--muted); max-width: 60ch;">
-            قدّم طلبك بنموذج واضح، واستلم <b class="text-slate-100">REF</b>، ثم أرسله لقسم العمليات عبر
-            <b class="text-slate-100">واتساب</b> أو <b class="text-slate-100">البريد الإلكتروني</b>.
-            تصميم هادئ ومناسب للشركات الكبرى والمنظمات.
-          </p>
-
-          <div class="mt-6 flex flex-wrap gap-2">
-            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-              <i class="fa-solid fa-clock ml-2" style="color:var(--gold)"></i>
-              <span id="opsHoursText"></span>
-            </span>
-            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-              <i class="fa-solid fa-reply ml-2" style="color:var(--sky)"></i>
-              <span id="opsRespText"></span>
-            </span>
-            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-              <i class="fa-solid fa-scale-balanced ml-2" style="color:rgba(163,178,199,.95)"></i>
-              <span id="complianceTextMini"></span>
-            </span>
-          </div>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#services" class="btn-grad px-5 py-3 rounded-2xl">
-              استعراض الخدمات <i class="fa-solid fa-arrow-down mr-2"></i>
-            </a>
-            <a href="#corporate" class="chip btn-ghost px-5 py-3 rounded-2xl text-xs font-extrabold">
-              مكتب الشركات والمنظمات <i class="fa-solid fa-briefcase mr-2" style="color:var(--gold)"></i>
-            </a>
-            <button class="chip btn-ghost px-5 py-3 rounded-2xl text-xs font-extrabold"
-                    onclick="openTrack()">
-              تتبّع بالرقم REF <i class="fa-solid fa-hashtag mr-2" style="color:var(--sky)"></i>
-            </button>
-          </div>
-
-          <div class="mt-5 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-            <i class="fa-solid fa-circle-info ml-1"></i>
-            نصيحة: واتساب أسرع — الإيميل أفضل للتوثيق المؤسسي.
-          </div>
-        </div>
-
-        <div class="md:col-span-5">
-          <div class="glass2 rounded-[26px] p-6">
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
-              بدء سريع
-            </div>
-            <div class="mt-2 text-sm font-bold leading-relaxed" style="color:rgba(229,231,235,.92);">
-              اختر خدمة → املأ النموذج → راجع الملخص → أرسل لقسم العمليات (واتساب أو إيميل).
-            </div>
-
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <button class="chip btn-ghost rounded-2xl px-3 py-3 text-right"
-                      onclick="openService('svc-flight-intl')">
-                <div class="text-xs font-extrabold"><i class="fa-solid fa-plane-up ml-2" style="color:var(--sky)"></i> رحلات</div>
-                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">تسعير/حجز</div>
-              </button>
-              <button class="chip btn-ghost rounded-2xl px-3 py-3 text-right"
-                      onclick="openService('svc-cargo')">
-                <div class="text-xs font-extrabold"><i class="fa-solid fa-box ml-2" style="color:var(--gold)"></i> شحن</div>
-                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">باب-لباب</div>
-              </button>
-              <button class="chip btn-ghost rounded-2xl px-3 py-3 text-right"
-                      onclick="openService('svc-ground')">
-                <div class="text-xs font-extrabold"><i class="fa-solid fa-car-side ml-2" style="color:var(--mint)"></i> نقل</div>
-                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">داخل السودان</div>
-              </button>
-              <button class="chip btn-ghost rounded-2xl px-3 py-3 text-right"
-                      onclick="openService('svc-accom')">
-                <div class="text-xs font-extrabold"><i class="fa-solid fa-hotel ml-2" style="color:rgba(229,231,235,.92)"></i> إقامة</div>
-                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">القاهرة/السودان</div>
-              </button>
-            </div>
-
-            <div class="mt-4 rounded-2xl p-4 glass3">
-              <div class="text-xs font-extrabold" style="color:rgba(229,231,235,.92);">
-                <i class="fa-solid fa-lock ml-2" style="color:rgba(163,178,199,.95)"></i> تقليل البيانات
-              </div>
-              <div class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">
-                نجمع فقط المعلومات اللازمة لتنفيذ الطلب. <span class="font-extrabold">لا يتم جمع بيانات بطاقات</span> على هذه البوابة.
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- =========================
-    DARAL IN SUDAN
-  ========================== -->
-  <section class="max-w-7xl mx-auto px-4 pb-8">
-    <div class="glass rounded-[28px] p-7 md:p-10">
-      <div class="flex items-start md:items-center justify-between gap-4 flex-wrap">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-black">D</div>
         <div>
-          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">نبذة عن الشركة</div>
-          <h2 class="mt-2 text-2xl md:text-3xl font-black">
-            دارال في السودان — تأسست <span style="color:var(--gold)">1995</span>
-          </h2>
-          <p class="mt-2 text-sm md:text-base font-semibold" style="color:var(--muted); max-width: 80ch;">
-            خبرة تشغيلية داخل السودان + نماذج طلبات منظمة + توجيه عمليات احترافي بين مصر ↔ السودان.
-          </p>
-        </div>
-
-        <div class="flex gap-2 flex-wrap">
-          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-            <i class="fa-solid fa-building ml-2" style="color:var(--sky)"></i> مقر الخرطوم (السودان)
-          </span>
-          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-            <i class="fa-solid fa-certificate ml-2" style="color:var(--gold)"></i> اعتماد IATA (آخر تجديد 2022)
-          </span>
-          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
-            <i class="fa-solid fa-route ml-2" style="color:var(--mint)"></i> توجيه عمليات
-          </span>
+          <div class="font-extrabold">Daral</div>
+          <div class="text-xs font-bold text-slate-500">Sudan & Egypt Terminal Services</div>
         </div>
       </div>
-
-      <div class="mt-7 grid lg:grid-cols-12 gap-4">
-        <div class="lg:col-span-7">
-          <div class="glass2 rounded-[26px] p-6">
-            <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">
-              لماذا هذه البوابة مناسبة للشركات والمنظمات؟
-            </div>
-            <ul class="mt-3 space-y-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
-              <li><i class="fa-solid fa-check ml-2" style="color:var(--mint)"></i> رقم مرجعي (REF) لكل طلب لتسهيل المتابعة</li>
-              <li><i class="fa-solid fa-check ml-2" style="color:var(--mint)"></i> توجيه الطلب لقسم العمليات (واتساب + إيميل)</li>
-              <li><i class="fa-solid fa-check ml-2" style="color:var(--mint)"></i> مراعاة إجراءات الامتثال عند اللزوم (OFAC/KYC)</li>
-              <li><i class="fa-solid fa-check ml-2" style="color:var(--mint)"></i> تقليل البيانات وعدم جمع بيانات بطاقات</li>
-            </ul>
-
-            <div class="mt-5 rounded-2xl p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.04);">
-              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">العنوان الرسمي (السودان)</div>
-              <div class="mt-2 text-sm font-semibold" style="color:rgba(229,231,235,.92);">
-                32–33 الطابق الأرضي، عمارة مرهج، شارع الجمهورية، الخرطوم، السودان
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5">
-          <div class="glass2 rounded-[26px] p-6">
-            <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">
-              تغطية السودان (مختصر عملي)
-            </div>
-            <div class="mt-3 grid grid-cols-2 gap-2">
-              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot ml-2" style="color:var(--gold)"></i> بورتسودان</span>
-              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot ml-2" style="color:var(--gold)"></i> الخرطوم</span>
-              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot ml-2" style="color:var(--gold)"></i> كسلا</span>
-              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot ml-2" style="color:var(--gold)"></i> دنقلا</span>
-            </div>
-
-            <div class="mt-4 rounded-[22px] p-5 glass3">
-              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
-                طلب مستندات الشركة
-              </div>
-              <div class="mt-2 text-sm font-semibold" style="color:rgba(229,231,235,.92);">
-                لطلب مستندات رسمية أو ملفات التعريف للشركات/المنظمات: أرسل إلى
-                <a class="link" href="#" onclick="mailtoDocs(); return false;">info@daral-sd.com</a>.
-              </div>
-              <button class="mt-4 chip btn-ghost px-4 py-2 rounded-2xl text-xs font-extrabold"
-                      onclick="mailtoDocs()">
-                إرسال طلب مستندات عبر الإيميل <i class="fa-solid fa-arrow-left mr-2" style="color:var(--sky)"></i>
-              </button>
-            </div>
-
-            <div class="mt-4 hint">
-              <i class="fa-solid fa-circle-info ml-1"></i> تم تصميم النبذة بشكل مناسب لملفات الشركات والمنظمات.
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =========================
-    SERVICES + FORMS
-  ========================== -->
-  <main id="services" class="max-w-7xl mx-auto px-4 pb-24">
-
-    <!-- Segmentation -->
-    <div class="flex items-center justify-between gap-3 flex-wrap mb-5">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight">طلبات الخدمات</h2>
-        <p class="text-sm md:text-base font-semibold" style="color:var(--muted);">
-          للأفراد وللشركات/المنظمات — نفس المعايير، مع خيارات توجيه مناسبة لكل فئة.
-        </p>
-      </div>
-      <div class="flex gap-2 flex-wrap">
-        <button id="tabIndividuals" class="px-4 py-2 rounded-2xl text-xs font-extrabold btn-ghost"
-                style="background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.24);"
-                onclick="setTab('individuals')">
-          أفراد
-        </button>
-        <button id="tabCorporate" class="chip btn-ghost px-4 py-2 rounded-2xl text-xs font-extrabold"
-                onclick="setTab('corporate')">
-          شركات / منظمات
-        </button>
-      </div>
-    </div>
-
-    <!-- Service Cards -->
-    <div id="cardsIndividuals" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-flight-intl')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">الرحلات</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-plane-up ml-2" style="color:var(--sky)"></i> دولي (مصر ↔ السودان)
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              تسعير أو حجز — مسار، تواريخ، ركّاب.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">تسعير/حجز</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-flight-dom')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">الرحلات</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-plane-circle-check ml-2" style="color:var(--gold)"></i> داخلي (السودان)
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              طلب تنسيق — مسار، تاريخ، أولوية.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">طلب</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-cargo')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">اللوجستيات</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-box-open ml-2" style="color:var(--mint)"></i> شحن (باب-لباب)
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              وزن، عدد قطع، استلام وتسليم.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">تسعير</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-ground')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">خدمات السودان</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-car-side ml-2" style="color:rgba(229,231,235,.92)"></i> نقل بري (داخل السودان)
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              استقبال، تنقلات، بين المدن، أسطول.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">توجيه</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-bus')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">سفر بري</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-bus ml-2" style="color:var(--sky)"></i> باص / نقل بري
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              حجز مقاعد للأفراد/العائلات/المجموعات.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">مقاعد</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-accom')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">الإقامة</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-hotel ml-2" style="color:var(--gold)"></i> فنادق/سكن (القاهرة/السودان)
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              تواريخ، عدد النزلاء، تفضيلات، ميزانية.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">خيارات</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition md:col-span-2 xl:col-span-3"
-              onclick="openService('svc-addons')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">إضافات VIP</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-star ml-2" style="color:rgba(229,231,235,.92)"></i> استقبال ومساعدة / ليموزين / eSIM
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              خدمات مطار وتعامل مميز.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">VIP</span>
-        </div>
-      </button>
-    </div>
-
-    <div id="cardsCorporate" class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-corporate-desk')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">شركات / منظمات</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-briefcase ml-2" style="color:var(--gold)"></i> طلب مكتب الشركات والمنظمات
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              مهام/بعثات، VIP، مجموعات (10+)، إقامة طويلة (30–90 يوم).
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">أولوية</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="openService('svc-partnership')">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">شراكات</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-handshake ml-2" style="color:var(--sky)"></i> طلب شراكة / RFP
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              شركات طيران، فنادق، نقل، شركات، منظمات.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">RFP</span>
-        </div>
-      </button>
-
-      <button class="glass rounded-[26px] p-6 text-right hover:shadow-lg transition"
-              onclick="document.getElementById('corporatePack').scrollIntoView({behavior:'smooth'})">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">ملخص</div>
-            <div class="mt-2 text-xl font-black">
-              <i class="fa-solid fa-file-lines ml-2" style="color:var(--mint)"></i> الحزمة التعريفية للشركات
-            </div>
-            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
-              التغطية، سير العمل، الفواتير، الامتثال، التواصل.
-            </div>
-          </div>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">عرض</span>
-        </div>
-      </button>
-    </div>
-
-    <!-- Divider -->
-    <div class="mt-10 mb-6 flex items-center gap-3">
-      <div class="h-px flex-1" style="background:var(--line)"></div>
-      <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
-        نماذج الطلب (معيار مهني)
-      </div>
-      <div class="h-px flex-1" style="background:var(--line)"></div>
-    </div>
-
-    <!-- Helper -->
-    <div class="glass2 rounded-[26px] p-5">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div class="text-sm font-semibold" style="color:rgba(229,231,235,.92);">
-          <i class="fa-solid fa-circle-check ml-2" style="color:var(--mint)"></i>
-          كل نموذج يولّد <b>REF</b> + ملخص جاهز للإرسال عبر واتساب أو الإيميل.
-        </div>
-        <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-          اختصارات: <span class="kbd">Esc</span> إغلاق • <span class="kbd">Ctrl</span> + <span class="kbd">K</span> تتبّع REF
-        </div>
-      </div>
-    </div>
-
-    <!-- =========================
-      FORMS
-    ========================== -->
-    <section id="forms" class="space-y-4 mt-4">
-
-      <!-- 1) International Flights -->
-      <div id="svc-flight-intl" class="glass rounded-[28px] overflow-hidden">
-        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
-          <div class="flex items-center justify-between gap-3 flex-wrap">
-            <div>
-              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">الرحلات</div>
-              <h3 class="text-2xl font-black"><i class="fa-solid fa-plane-up ml-2" style="color:var(--sky)"></i> دولي (مصر ↔ السودان)</h3>
-              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">تسعير أو حجز — بيانات واضحة لتسريع التنفيذ.</p>
-            </div>
-            <div class="flex gap-2">
-              <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">أفراد</span>
-              <button class="chip btn-ghost px-3 py-1.5 rounded-full text-[11px] font-extrabold" onclick="scrollToTop()">
-                العودة للأعلى
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <form class="p-6 md:p-7 space-y-5" data-service="رحلة دولية (مصر ↔ السودان)" data-tags="[أفراد] [رحلات]" onsubmit="return reviewBeforeSend(event)">
-          <input type="hidden" name="desk" value="EG">
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">الاسم (كما في الجواز) — بالإنجليزية</label>
-              <input required name="fullName" data-label="الاسم" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="SURNAME / GIVEN NAME">
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">رقم واتساب</label>
-              <input required name="whats" data-label="واتساب" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
-              <div class="mt-2 hint">يفضّل إدخال الرقم بصيغة دولية.</div>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">نوع الطلب</label>
-              <select name="reqType" data-label="نوع الطلب" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-                <option value="تسعير">تسعير</option>
-                <option value="حجز">حجز</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">نوع الرحلة</label>
-              <select name="tripType" data-label="نوع الرحلة" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
-                      onchange="toggleReturnDate(this,'intlReturnWrap'); syncMinDates(this.form);">
-                <option value="ذهاب فقط">ذهاب فقط</option>
-                <option value="ذهاب وعودة">ذهاب وعودة</option>
-              </select>
-            </div>
-
-            <!-- Airline dropdown (requested) -->
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">شركة طيران مفضلة</label>
-              <select name="airlinePick" data-label="شركة الطيران (اختيار)" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
-                      onchange="toggleOtherField(this,'intlAirlineOtherWrap')">
-                <option value="أي شركة (Any)">أي شركة (Any)</option>
-                <option value="EgyptAir">EgyptAir</option>
-                <option value="Badr Airlines">Badr Airlines</option>
-                <option value="Tarco Aviation">Tarco Aviation</option>
-                <option value="Sudan Airways">Sudan Airways</option>
-                <option value="Flynas (عند التوفر)">Flynas (عند التوفر)</option>
-                <option value="Other">أخرى</option>
-              </select>
-              <div id="intlAirlineOtherWrap" class="hidden mt-2">
-                <input name="airlineOther" data-label="شركة طيران أخرى" class="field w-full rounded-2xl px-4 py-3 text-sm font-semibold" placeholder="اكتب اسم شركة الطيران">
-              </div>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">من (مدينة/مطار)</label>
-              <input required name="from" data-label="من" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="القاهرة (CAI) / بورتسودان (PZU)">
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">إلى (مدينة/مطار)</label>
-              <input required name="to" data-label="إلى" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="بورتسودان (PZU) / القاهرة (CAI)">
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">تاريخ المغادرة</label>
-              <input required type="date" name="depDate" data-label="تاريخ المغادرة" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" onchange="syncMinDates(this.form)">
-              <div class="mt-2 hint">لن نسمح بعودة قبل المغادرة.</div>
-            </div>
-            <div id="intlReturnWrap" class="hidden">
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">تاريخ العودة</label>
-              <input type="date" name="retDate" data-label="تاريخ العودة" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" onchange="syncMinDates(this.form)">
-            </div>
-            <div class="flex items-center gap-3 mt-7">
-              <input type="checkbox" name="flex" data-label="مرونة في التواريخ" class="h-5 w-5 accent-sky-400">
-              <span class="text-sm font-bold" style="color:rgba(163,178,199,.92);">مرونة في التواريخ</span>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-4 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">بالغون</label>
-              <input required type="number" min="1" value="1" name="adults" data-label="بالغون" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">أطفال</label>
-              <input type="number" min="0" value="0" name="children" data-label="أطفال" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">رُضّع</label>
-              <input type="number" min="0" value="0" name="infants" data-label="رُضّع" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-              <div class="mt-2 hint">الرُضع ≤ البالغين.</div>
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">أمتعة (اختياري)</label>
-              <input name="baggage" data-label="الأمتعة" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="قطعة إضافية / 46KG">
-            </div>
-          </div>
-
-          <div>
-            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">ملاحظات (اختياري)</label>
-            <textarea name="notes" data-label="ملاحظات" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="أي تفاصيل تساعد قسم العمليات..."></textarea>
-          </div>
-
-          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-              <i class="fa-solid fa-lock ml-1"></i> <span id="noCardLine1"></span>
-            </div>
-            <button class="btn-grad px-5 py-3 rounded-2xl">
-              مراجعة وإرسال <i class="fa-solid fa-arrow-left mr-2"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- 2) Domestic Flights Sudan -->
-      <div id="svc-flight-dom" class="glass rounded-[28px] overflow-hidden">
-        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
-          <div class="flex items-center justify-between gap-3 flex-wrap">
-            <div>
-              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">الرحلات</div>
-              <h3 class="text-2xl font-black"><i class="fa-solid fa-plane-circle-check ml-2" style="color:var(--gold)"></i> رحلات داخل السودان</h3>
-              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">طلب تنسيق — مرن وبقيادة العمليات.</p>
-            </div>
-            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">أفراد</span>
-          </div>
-        </div>
-
-        <form class="p-6 md:p-7 space-y-5" data-service="رحلة داخل السودان" data-tags="[أفراد] [رحلات]" onsubmit="return reviewBeforeSend(event)">
-          <input type="hidden" name="desk" value="SD">
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">الاسم (بالإنجليزية)</label>
-              <input required name="fullName" data-label="الاسم" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="SURNAME / GIVEN NAME">
-            </div>
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">رقم واتساب</label>
-              <input required name="whats" data-label="واتساب" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+249… / +20…">
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">شركة طيران مفضلة</label>
-              <select name="domAirlinePick" data-label="شركة الطيران (اختيار)" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
-                      onchange="toggleOtherField(this,'domAirlineOtherWrap')">
-                <option value="أي شركة (Any)">أي شركة (Any)</option>
-                <option value="Badr Airlines">Badr Airlines</option>
-                <option value="Tarco Aviation">Tarco Aviation</option>
-                <option value="Sudan Airways">Sudan Airways</option>
-                <option value="Other">أخرى</option>
-              </select>
-              <div id="domAirlineOtherWrap" class="hidden mt-2">
-                <input name="domAirlineOther" data-label="شركة طيران أخرى" class="field w-full rounded-2xl px-4 py-3 text-sm font-semibold" placeholder="اكتب اسم شركة الطيران">
-              </div>
-            </div>
-
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">المسار</label>
-              <select required name="route" data-label="المسار" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-                <option value="">اختر</option>
-                <option value="بورتسودان (PZU) → الخرطوم (KRT)">بورتسودان → الخرطوم</option>
-                <option value="الخرطوم (KRT) → بورتسودان (PZU)">الخرطوم → بورتسودان</option>
-                <option value="بورتسودان (PZU) → دنقلا (DOG)">بورتسودان → دنقلا</option>
-                <option value="بورتسودان (PZU) → كسلا (KSL)">بورتسودان → كسلا</option>
-                <option value="مسار آخر (اكتب بالملاحظات)">مسار آخر (اكتب بالملاحظات)</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">الأولوية</label>
-              <select name="priority" data-label="الأولوية" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-                <option value="عادي">عادي</option>
-                <option value="عاجل">عاجل</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-4 gap-4">
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">التاريخ</label>
-              <input required type="date" name="date" data-label="التاريخ" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-            </div>
-
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">بالغون</label>
-              <input required type="number" min="1" value="1" name="adults" data-label="بالغون" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
-            </div>
-
-            <div class="flex items-center gap-3 mt-7">
-              <input type="checkbox" name="flex" data-label="مرونة في التواريخ" class="h-5 w-5 accent-amber-400">
-              <span class="text-sm font-bold" style="color:rgba(163,178,199,.92);">مرونة</span>
-            </div>
-
-            <div>
-              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">أمتعة (اختياري)</label>
-              <input name="baggage" data-label="الأمتعة" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="عادي / إضافي">
-            </div>
-          </div>
-
-          <div>
-            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">ملاحظات (اختياري)</label>
-            <textarea name="notes" data-label="ملاحظات" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="مسارات أخرى / حالة إنسانية / تفاصيل إضافية..."></textarea>
-          </div>
-
-          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-              <i class="fa-solid fa-circle-check ml-1"></i> يتم التوجيه لمكتب التنسيق داخل السودان.
-            </div>
-            <button class="btn-grad px-5 py-3 rounded-2xl" style="background:linear-gradient(90deg, rgba(251,191,36,1), rgba(56,189,248,1));">
-              مراجعة وإرسال <i class="fa-solid fa-arrow-left mr-2"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- باقي النماذج (Cargo/Ground/Bus/Accom/VIP/Corporate/Partnership) كما هي من النسخة السابقة -->
-      <!-- للحفاظ على الرد مختصر: تركتها بدون تغيير وظيفي، فقط تعتمد نفس الستايل المحسّن أعلاه -->
-      <!-- ===================== -->
-      <!-- ملاحظة: إذا تريدني أعمل نفس مستوى تحسينات الألوان/الـdropdown داخل كل نموذج (شحن/إقامة/نقل..)
-           قلّي “طبّق نفس التحسينات على كل النماذج” وسأصدر ملف كامل محدث 100% لكل الأقسام. -->
-      <!-- ===================== -->
-
-      <!-- (تم الإبقاء على بقية الكود من نسختك السابقة، لكن لو تريده كامل في نفس الرد بزيادة
-           سأرسله كامل مرة واحدة — فقط قولي “ارسل الملف كامل بكل الأقسام”.) -->
-
-    </section>
-
-    <!-- =========================
-      FOOTER (مختصر)
-    ========================== -->
-    <footer class="mt-10 pb-10">
-      <div class="max-w-7xl mx-auto glass rounded-[28px] p-7 md:p-10">
-        <div class="grid lg:grid-cols-12 gap-8">
-          <div class="lg:col-span-6">
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">DARAL</div>
-            <div class="mt-2 text-sm font-semibold leading-relaxed" style="color:rgba(163,178,199,.92);">
-              Dar Al Khartoum Travel & Tourism Co. Ltd — تأسست 1995.<br/>
-              بوابة طلبات السفر واللوجستيات بين مصر ↔ السودان.
-            </div>
-            <div class="mt-4 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-              <i class="fa-solid fa-location-dot ml-2" style="color:var(--gold)"></i>
-              32–33 الطابق الأرضي، عمارة مرهج، شارع الجمهورية، الخرطوم، السودان
-            </div>
-            <div class="mt-3 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-              <i class="fa-solid fa-shield ml-2" style="color:rgba(229,231,235,.92)"></i>
-              <span id="complianceTextFooter"></span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6">
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">التواصل</div>
-            <div class="mt-3 space-y-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
-              <div><i class="fa-solid fa-phone ml-2"></i> مكتب مصر: <b class="text-slate-100" id="egTelText"></b></div>
-              <div><i class="fa-solid fa-phone ml-2"></i> مكتب السودان: <b class="text-slate-100" id="sdTelText"></b></div>
-              <div>
-                <i class="fa-solid fa-envelope ml-2" style="color:var(--sky)"></i>
-                الإيميل:
-                <a class="link" href="#" id="emailFooterLink">info@daral-sd.com</a>
-                <button class="mr-2 chip btn-ghost px-2 py-1 rounded-xl text-[11px] font-extrabold" onclick="copyText(OPS_EMAIL)">
-                  نسخ
-                </button>
-              </div>
-              <div class="pt-2 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-                <i class="fa-solid fa-clock ml-2" style="color:var(--gold)"></i>
-                <span id="opsHoursText2"></span><br/>
-                <i class="fa-solid fa-reply ml-2" style="color:var(--sky)"></i>
-                <span id="opsRespText2"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-8 pt-6 border-t flex flex-col md:flex-row md:items-center md:justify-between gap-3"
-             style="border-color: var(--line);">
-          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-            © <span id="year"></span> دارال. جميع الحقوق محفوظة.
-          </div>
-          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
-            <i class="fa-solid fa-lock ml-1"></i> <span id="noCardLine3"></span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Floating WhatsApp -->
-  <a id="waFloat" href="#" target="_blank"
-     class="fixed bottom-6 left-6 h-14 w-14 rounded-full flex items-center justify-center text-slate-950 shadow-xl hover:scale-110 transition"
-     style="background:linear-gradient(135deg, rgba(52,211,153,1), rgba(56,189,248,1));">
-    <i class="fa-brands fa-whatsapp text-3xl"></i>
-  </a>
-
-  <!-- TRACK MODAL -->
-  <div id="trackOverlay" class="hidden fixed inset-0 z-50">
-    <div class="absolute inset-0" style="background:rgba(0,0,0,.58)" onclick="closeTrack()"></div>
-    <div class="relative max-w-lg mx-auto mt-16 px-4">
-      <div class="glass rounded-[28px] p-6 md:p-7">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">تتبّع الطلب</div>
-            <div class="mt-1 text-xl font-black">الاستعلام باستخدام REF</div>
-            <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
-              سنفتح واتساب برسالة تتبّع قصيرة.
-            </div>
-          </div>
-          <button class="chip btn-ghost px-3 py-2 rounded-2xl text-xs font-extrabold" onclick="closeTrack()">
-            <i class="fa-solid fa-xmark ml-1"></i> إغلاق
-          </button>
-        </div>
-
-        <div class="mt-5">
-          <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">REF</label>
-          <input id="trackRefInput" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="مثال: 48392" style="font-family:'Outfit',sans-serif;">
-        </div>
-
-        <div class="mt-4 flex gap-2 justify-end flex-wrap">
-          <button class="chip btn-ghost px-4 py-3 rounded-2xl text-xs font-extrabold" onclick="copyText(document.getElementById('trackRefInput').value)">
-            نسخ
-          </button>
-          <button class="btn-grad px-4 py-3 rounded-2xl text-xs" onclick="trackRef(document.getElementById('trackRefInput').value)">
-            فتح واتساب <i class="fa-brands fa-whatsapp mr-2"></i>
-          </button>
-        </div>
-
-        <div class="mt-3 hint">
-          يمكنك دائمًا إرسال بريد إلى <b class="text-slate-100">info@daral-sd.com</b> مع REF.
-        </div>
+      <div class="flex gap-2">
+        <a href="tel:+201113336672" class="pill px-3 py-2 rounded-xl text-sm font-black">+20 111 333 6672</a>
+        <a href="https://wa.me/249912399919" target="_blank"
+           class="bg-slate-900 text-amber-400 px-4 py-2 rounded-xl font-black">
+          WhatsApp
+        </a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Toast (simple) -->
-  <div id="toast" class="hidden fixed bottom-6 right-6 z-50">
-    <div class="glass rounded-[18px] px-4 py-3 flex items-center gap-3">
-      <i class="fa-solid fa-circle-check" style="color:var(--mint)"></i>
-      <div class="text-xs font-semibold" style="color:rgba(229,231,235,.92);">
-        تم النسخ
+<!-- ================= HERO ================= -->
+<section id="home">
+  <div class="max-w-6xl mx-auto px-4 py-12 grid lg:grid-cols-2 gap-8">
+    <div>
+      <h1 class="text-4xl md:text-5xl font-extrabold">Daral</h1>
+      <p class="mt-3 text-lg font-bold text-slate-600">
+        Sudan & Egypt Terminal Services — requests routed instantly to Operations via WhatsApp.
+      </p>
+      <div class="mt-6 flex gap-3">
+        <button onclick="openRequest('QUICK')"
+          class="bg-slate-900 text-amber-400 px-6 py-4 rounded-2xl font-black">
+          Start a Request
+        </button>
+        <a href="#services" class="pill px-6 py-4 rounded-2xl font-black">
+          View Services
+        </a>
+      </div>
+    </div>
+
+    <div class="glass rounded-3xl p-8">
+      <h3 class="text-xl font-extrabold mb-4">Operations Desk</h3>
+      <div class="space-y-3">
+        <button onclick="openRequest('FLIGHTS')" class="pill w-full p-4 rounded-xl text-left font-black">
+          ✈ Flights (Quote / Book)
+        </button>
+        <button onclick="openRequest('CARGO')" class="pill w-full p-4 rounded-xl text-left font-black">
+          📦 Cargo (Door-to-door)
+        </button>
+        <button onclick="openRequest('BUS')" class="pill w-full p-4 rounded-xl text-left font-black">
+          🚌 Bus / Land Transport
+        </button>
+        <button onclick="openRequest('HOTEL')" class="pill w-full p-4 rounded-xl text-left font-black">
+          🏨 Accommodation
+        </button>
+        <button onclick="openRequest('ADDONS')" class="pill w-full p-4 rounded-xl text-left font-black">
+          ⭐ Meet & Assist
+        </button>
       </div>
     </div>
   </div>
+</section>
 
-  <script>
-    // =========================
-    // INIT
-    // =========================
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-extrabold text-center mb-8">Services</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="font-extrabold">Flights</h3>
+        <p class="text-sm mt-2">International & domestic flights</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="font-extrabold">Cargo</h3>
+        <p class="text-sm mt-2">Door-to-door cargo services</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="font-extrabold">Land Transport</h3>
+        <p class="text-sm mt-2">Inside Sudan major routes</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // top links
-    document.getElementById("btnCallEG").href = "tel:" + OPS_TEL_EG;
-    document.getElementById("btnWAEG").href = "https://wa.me/" + OPS_WA_EG;
-    document.getElementById("btnWASD").href = "https://wa.me/" + OPS_WA_SD;
-    document.getElementById("waFloat").href = "https://wa.me/" + OPS_WA_EG;
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="glass p-8 rounded-3xl text-center">
+      <h2 class="text-2xl font-extrabold">Contact</h2>
+      <p class="mt-2 font-bold">For urgent requests, WhatsApp is fastest.</p>
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="https://wa.me/249912399919" target="_blank"
+           class="bg-emerald-500 text-white px-6 py-4 rounded-xl font-black">
+          WhatsApp
+        </a>
+        <a href="tel:+201113336672" class="pill px-6 py-4 rounded-xl font-black">
+          Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    document.getElementById("emailTextTop").textContent = OPS_EMAIL;
-    document.getElementById("btnEmailTop").href = "mailto:" + OPS_EMAIL;
-    document.getElementById("emailFooterLink").href = "mailto:" + OPS_EMAIL;
+<!-- ================= MODAL ================= -->
+<div id="modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center">
+  <div class="bg-white rounded-2xl w-full max-w-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h3 id="modalTitle" class="font-extrabold text-lg">Request</h3>
+      <button onclick="closeModal()">✖</button>
+    </div>
+    <form onsubmit="return submitModal(event)">
+      <input id="m_name" class="input w-full mb-3 px-4 py-3 rounded-xl" placeholder="Full Name" required>
+      <input id="m_phone" class="input w-full mb-3 px-4 py-3 rounded-xl" placeholder="Phone / WhatsApp" required>
+      <textarea id="m_notes" class="input w-full mb-3 px-4 py-3 rounded-xl" placeholder="Details"></textarea>
+      <button class="bg-slate-900 text-amber-400 w-full py-4 rounded-xl font-black">
+        Send via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
 
-    // footer phone texts
-    document.getElementById("egTelText").textContent = OPS_TEL_EG;
-    document.getElementById("sdTelText").textContent = OPS_TEL_SD;
+<!-- ================= SCRIPT ================= -->
+<script>
+  const OPS_WHATSAPP = "249912399919";
 
-    // ops lines
-    document.getElementById("opsHoursText").textContent = OPERATING_HOURS;
-    document.getElementById("opsRespText").textContent = TYPICAL_RESPONSE;
-    document.getElementById("opsHoursText2").textContent = OPERATING_HOURS;
-    document.getElementById("opsRespText2").textContent = TYPICAL_RESPONSE;
+  function openRequest(type){
+    document.getElementById("modalTitle").innerText = type + " Request";
+    document.getElementById("modal").classList.remove("hidden");
+  }
 
-    // compliance / no-card
-    const complianceEls = ["complianceTextMini","complianceTextFooter"];
-    complianceEls.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = COMPLIANCE_LINE; });
+  function closeModal(){
+    document.getElementById("modal").classList.add("hidden");
+  }
 
-    const noCardEls = ["noCardLine1","noCardLine3"];
-    noCardEls.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = NO_CARD_LINE; });
+  function submitModal(e){
+    e.preventDefault();
+    const name = document.getElementById("m_name").value;
+    const phone = document.getElementById("m_phone").value;
+    const notes = document.getElementById("m_notes").value;
+    const msg =
+      `Name: ${name}%0A` +
+      `Phone: ${phone}%0A` +
+      `Notes: ${notes}`;
+    window.open(`https://wa.me/${OPS_WHATSAPP}?text=${msg}`, "_blank");
+    closeModal();
+    return false;
+  }
+</script>
 
-    // copy email button
-    document.getElementById("btnCopyEmailTop").addEventListener("click", ()=>copyText(OPS_EMAIL));
-
-    // Keyboard shortcuts
-    document.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape"){ closeTrack(); }
-      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
-        e.preventDefault();
-        openTrack();
-      }
-    });
-
-    // =========================
-    // TABS
-    // =========================
-    function setTab(tab){
-      const ind = document.getElementById("cardsIndividuals");
-      const corp = document.getElementById("cardsCorporate");
-      const t1 = document.getElementById("tabIndividuals");
-      const t2 = document.getElementById("tabCorporate");
-
-      if(tab === "corporate"){
-        ind.classList.add("hidden");
-        corp.classList.remove("hidden");
-        t1.className = "chip btn-ghost px-4 py-2 rounded-2xl text-xs font-extrabold";
-        t2.className = "px-4 py-2 rounded-2xl text-xs font-extrabold btn-ghost";
-        t2.style.background = "rgba(251,191,36,.12)";
-        t2.style.border = "1px solid rgba(251,191,36,.24)";
-        t1.removeAttribute("style");
-      } else {
-        corp.classList.add("hidden");
-        ind.classList.remove("hidden");
-        t2.className = "chip btn-ghost px-4 py-2 rounded-2xl text-xs font-extrabold";
-        t1.className = "px-4 py-2 rounded-2xl text-xs font-extrabold btn-ghost";
-        t1.style.background = "rgba(56,189,248,.12)";
-        t1.style.border = "1px solid rgba(56,189,248,.24)";
-        t2.removeAttribute("style");
-      }
-    }
-
-    // =========================
-    // UX helpers
-    // =========================
-    function openService(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.scrollIntoView({behavior:"smooth", block:"start"});
-      el.animate(
-        [{transform:"scale(1)"},{transform:"scale(1.01)"},{transform:"scale(1)"}],
-        {duration:420, easing:"ease-out"}
-      );
-    }
-    function scrollToTop(){ window.scrollTo({top:0, behavior:"smooth"}); }
-
-    function toggleReturnDate(selectEl, wrapId){
-      const wrap = document.getElementById(wrapId);
-      if(!wrap) return;
-      const v = (selectEl.value||"");
-      if(v.includes("عودة")) wrap.classList.remove("hidden");
-      else wrap.classList.add("hidden");
-    }
-
-    // Dropdown "Other" handler (requested)
-    function toggleOtherField(selectEl, wrapId){
-      const wrap = document.getElementById(wrapId);
-      if(!wrap) return;
-      if(selectEl.value === "Other") wrap.classList.remove("hidden");
-      else wrap.classList.add("hidden");
-    }
-
-    // Date validation helpers (requested improvements)
-    function syncMinDates(form){
-      if(!form) return;
-      const dep = form.querySelector("input[name='depDate']");
-      const ret = form.querySelector("input[name='retDate']");
-      if(dep && ret){
-        if(dep.value){
-          ret.min = dep.value;
-          if(ret.value && ret.value < dep.value) ret.value = dep.value;
-        }
-      }
-    }
-
-    // =========================
-    // Copy helpers
-    // =========================
-    async function copyText(txt){
-      try{
-        await navigator.clipboard.writeText((txt||"").toString());
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = (txt||"").toString();
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
-      showToast();
-    }
-
-    function showToast(){
-      const t = document.getElementById("toast");
-      if(!t) return;
-      t.classList.remove("hidden");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=>t.classList.add("hidden"), 1800);
-    }
-
-    // =========================
-    // Tracking
-    // =========================
-    function openTrack(){
-      document.getElementById("trackOverlay").classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-      setTimeout(()=>document.getElementById("trackRefInput").focus(), 30);
-    }
-    function closeTrack(){
-      document.getElementById("trackOverlay").classList.add("hidden");
-      document.body.style.overflow = "";
-    }
-    function trackRef(ref){
-      const r = (ref||"").toString().trim();
-      if(!r){ alert("اكتب رقم REF أولاً."); return; }
-      const text = `DARAL — طلب تتبّع حالة\nREF: ${r}\nفضلاً شاركونا بالحالة الحالية والخطوة التالية.`;
-      const url = "https://wa.me/" + OPS_WA_EG + "?text=" + encodeURIComponent(text);
-      window.open(url, "_blank");
-      closeTrack();
-    }
-
-    // =========================
-    // Email helpers
-    // =========================
-    function mailtoDocs(){
-      const subject = "دارال — طلب مستندات الشركة";
-      const body = `مرحباً دارال,\n\nنرجو تزويدنا بمستندات الشركة المطلوبة لإجراءات الشركات/المنظمات.\n\nالجهة/الشركة:\nالدولة:\nاسم مسؤول التواصل:\nالغرض:\n\nشكراً.`;
-      window.location.href = `mailto:${OPS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-
-    // =========================
-    // Review handler (placeholder)
-    // =========================
-    // NOTE: في هذه النسخة المختصرة تركت submit يعمل كتأكيد فقط.
-    // إذا تريد نظام المراجعة (REF + WhatsApp/Email) كما في نسختك السابقة بكل النماذج،
-    // قلّي “ارسل الملف كامل بكل الأقسام” وسأدمج كل شيء في ملف واحد شامل.
-    function reviewBeforeSend(e){
-      e.preventDefault();
-      alert("تم حفظ الطلب مبدئياً — (هذه نسخة مختصرة للعرض). اطلب مني إصدار الملف الكامل بكل الأقسام مع نظام REF والإرسال.");
-      return false;
-    }
-  </script>
 </body>
 </html>
