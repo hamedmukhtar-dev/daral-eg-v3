@@ -1,10 +1,18 @@
+<!-- ==============================
+  Daral Global v3 — Egypt–Sudan Edition (EN)
+  File: index-en.html
+  Notes:
+  - Language switch goes to: index-ar.html (you will add Arabic file next)
+  - WhatsApp default desk: Egypt Ops
+  - Email sending uses mailto:info@daral-sd.com
+================================== -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <title>Daral | Egypt–Sudan Operations Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Daral Global v3 – Operational portal for Egypt–Sudan travel & logistics requests" />
+  <title>Daral | Egypt–Sudan Operations Portal</title>
+  <meta name="description" content="Daral — operations-led travel & logistics requests between Egypt and Sudan. Structured intake, reference tracking (REF), WhatsApp + Email routing." />
   <meta name="theme-color" content="#0b1220" />
 
   <!-- Tailwind -->
@@ -14,151 +22,2268 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- QR code generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <style>
-    body{
-      background:#0b1220;
-      color:#e5e7eb;
-      font-family:'Inter',system-ui,sans-serif;
+    :root{
+      /* Calm enterprise palette */
+      --bg0:#0b1220;
+      --bg1:#0f172a;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --line: rgba(148,163,184,.18);
+      --ink:#e5e7eb;
+      --muted:#a3b2c7;
+      --muted2:#94a3b8;
+      --soft:#0b1220;
+
+      --sky:#38bdf8;   /* sky-400 */
+      --gold:#fbbf24;  /* amber-400 */
+      --mint:#34d399;  /* emerald-400 */
+      --danger:#fb7185;/* rose-400 */
     }
-    .card{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(148,163,184,.2);
-      border-radius:20px;
+
+    html,body{height:100%; background:var(--bg0); color:var(--ink); font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    .bg-calm{
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(56,189,248,.14), transparent 58%),
+        radial-gradient(900px 520px at 85% 0%, rgba(251,191,36,.10), transparent 55%),
+        radial-gradient(950px 700px at 70% 92%, rgba(52,211,153,.10), transparent 60%),
+        linear-gradient(180deg, rgba(15,23,42,1), rgba(11,18,32,1));
+    }
+    .glass{
+      background: var(--panel);
+      border:1px solid var(--line);
+      box-shadow: 0 20px 60px rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .glass2{background:var(--panel2); border:1px solid var(--line);}
+    .chip{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
     }
     .field{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(148,163,184,.3);
-      padding:10px 14px;
-      border-radius:14px;
-      width:100%;
-      color:#e5e7eb;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(148,163,184,.22);
+      outline:none;
+      color: var(--ink);
     }
-    .field::placeholder{color:#94a3b8}
-    .btn{
-      background:linear-gradient(90deg,#38bdf8,#34d399);
-      color:#020617;
-      padding:12px 18px;
-      border-radius:16px;
-      font-weight:800;
+    .field::placeholder{color: rgba(148,163,184,.75);}
+    .field:focus{
+      border-color: rgba(56,189,248,.55);
+      box-shadow: 0 0 0 4px rgba(56,189,248,.12);
     }
+    .hidden{display:none;}
+    .soft-scroll::-webkit-scrollbar{height:10px;width:10px}
+    .soft-scroll::-webkit-scrollbar-thumb{background:rgba(148,163,184,.22);border-radius:999px}
+    .kbd{
+      border:1px solid rgba(148,163,184,.25);
+      background: rgba(255,255,255,.05);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 800;
+      color: rgba(229,231,235,.9);
+    }
+    .link{
+      color: rgba(56,189,248,.95);
+      font-weight: 800;
+    }
+    .link:hover{opacity:.85; text-decoration: underline;}
   </style>
+
+  <!-- Schema (LocalBusiness) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Daral (Dar Al Khartoum Travel & Tourism Co. Ltd)",
+    "email":"info@daral-sd.com",
+    "telephone":"+201113336672",
+    "areaServed":["Egypt","Sudan"],
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"32–33 Ground Floor, Marhij Building, Al Jumhuriya Street",
+      "addressLocality":"Khartoum",
+      "addressCountry":"Sudan"
+    }
+  }
+  </script>
 </head>
 
-<body class="min-h-screen">
+<body class="bg-calm min-h-screen">
 
-<!-- HEADER -->
-<header class="max-w-6xl mx-auto px-4 pt-10 pb-6">
-  <div class="card p-6">
-    <div class="flex justify-between items-center flex-wrap gap-4">
+  <!-- =========================
+    CONFIG (edit here)
+  ========================== -->
+  <script>
+    // WhatsApp numbers in international format WITHOUT '+'
+    const OPS_WA_EG = "201113336672";
+    const OPS_WA_SD = "249912399919";
+
+    // Phone with '+'
+    const OPS_TEL_EG = "+201113336672";
+    const OPS_TEL_SD = "+249912399919";
+
+    // Email
+    const OPS_EMAIL = "info@daral-sd.com";
+
+    // Labels / Ops phrasing
+    const OPERATING_HOURS = "Operating hours: Local business hours";
+    const TYPICAL_RESPONSE = "Typical response: within operating hours";
+    const COMPLIANCE_LINE = "Final confirmation is subject to availability and required compliance checks (OFAC/KYC when applicable).";
+    const NO_CARD_LINE = "No card details are collected on this website.";
+  </script>
+
+  <!-- =========================
+    TOP BAR
+  ========================== -->
+  <div class="border-b" style="border-color: var(--line);">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <!-- Logo placeholder (replace src when you have the logo) -->
+        <div class="h-10 w-10 rounded-2xl flex items-center justify-center"
+             style="background:rgba(56,189,248,.10); border:1px solid var(--line);">
+          <i class="fa-solid fa-compass text-sky-300"></i>
+        </div>
+        <div class="leading-tight">
+          <div class="text-xs font-extrabold tracking-widest uppercase text-slate-200">Daral</div>
+          <div class="text-[11px] font-semibold tracking-wide uppercase" style="color:rgba(163,178,199,.95);">
+            Egypt–Sudan Operations Portal
+          </div>
+        </div>
+
+        <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold ml-2">
+          <i class="fa-solid fa-location-dot mr-1" style="color:var(--gold)"></i> Egypt ↔ Sudan
+        </span>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2 flex-wrap justify-end">
+        <a id="btnEmailTop" href="#" class="chip px-3 py-2 rounded-xl text-xs font-extrabold hover:shadow-sm transition">
+          <i class="fa-solid fa-envelope mr-1" style="color:rgba(163,178,199,.9)"></i>
+          <span id="emailTextTop">info@daral-sd.com</span>
+        </a>
+
+        <button id="btnCopyEmailTop" class="chip px-3 py-2 rounded-xl text-xs font-extrabold hover:shadow-sm transition">
+          <i class="fa-solid fa-copy mr-1" style="color:rgba(163,178,199,.9)"></i> Copy
+        </button>
+
+        <a id="btnCallEG" href="#" class="chip px-3 py-2 rounded-xl text-xs font-extrabold hover:shadow-sm transition">
+          <i class="fa-solid fa-phone mr-1" style="color:rgba(163,178,199,.9)"></i> Call (EG)
+        </a>
+
+        <a id="btnWAEG" href="#" target="_blank"
+           class="px-3 py-2 rounded-xl text-xs font-extrabold text-slate-950 hover:shadow-md transition"
+           style="background:linear-gradient(90deg, rgba(52,211,153,1), rgba(56,189,248,1));">
+          <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Ops (EG)
+        </a>
+
+        <a id="btnWASD" href="#" target="_blank"
+           class="chip px-3 py-2 rounded-xl text-xs font-extrabold hover:shadow-sm transition">
+          <i class="fa-brands fa-whatsapp mr-1" style="color:var(--mint)"></i> WhatsApp (SD)
+        </a>
+
+        <!-- Language switch -->
+        <a href="index-ar.html"
+           class="chip px-3 py-2 rounded-xl text-xs font-extrabold hover:shadow-sm transition"
+           title="Switch to Arabic">
+          <i class="fa-solid fa-language mr-1" style="color:rgba(163,178,199,.9)"></i> عربي
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+    HERO
+  ========================== -->
+  <header class="max-w-7xl mx-auto px-4 pt-10 pb-8">
+    <div class="glass rounded-[28px] p-7 md:p-10">
+      <div class="grid md:grid-cols-12 gap-7 items-center">
+        <div class="md:col-span-7">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
+              <i class="fa-solid fa-shield-heart mr-1" style="color:var(--sky)"></i> Operations-led routing
+            </span>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
+              <i class="fa-solid fa-clipboard-check mr-1" style="color:var(--mint)"></i> Structured intake forms
+            </span>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
+              <i class="fa-solid fa-hashtag mr-1" style="color:var(--gold)"></i> Reference tracking (REF)
+            </span>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">
+              <i class="fa-solid fa-lock mr-1" style="color:rgba(163,178,199,.95)"></i> No card collection
+            </span>
+          </div>
+
+          <h1 class="mt-5 text-4xl md:text-5xl font-black tracking-tight">
+            Egypt–Sudan travel & logistics requests — done with clarity and speed.
+          </h1>
+
+          <p class="mt-4 text-base md:text-lg font-semibold" style="color:var(--muted); max-width: 52ch;">
+            Submit a structured request, get a <b class="text-slate-100">REF</b>, and route it to Operations via
+            <b class="text-slate-100">WhatsApp</b> or <b class="text-slate-100">Email</b>.
+            Built to be acceptable for <b class="text-slate-100">corporate & NGO</b> workflows.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+              <i class="fa-solid fa-clock mr-2" style="color:var(--gold)"></i>
+              <span id="opsHoursText"></span>
+            </span>
+            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+              <i class="fa-solid fa-reply mr-2" style="color:var(--sky)"></i>
+              <span id="opsRespText"></span>
+            </span>
+            <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+              <i class="fa-solid fa-scale-balanced mr-2" style="color:rgba(163,178,199,.95)"></i>
+              <span id="complianceTextMini"></span>
+            </span>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#services" class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+               style="background:linear-gradient(90deg, rgba(56,189,248,1), rgba(52,211,153,1));">
+              Explore services <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+            <a href="#corporate" class="chip px-5 py-3 rounded-2xl text-xs font-extrabold hover:shadow-sm transition">
+              Corporate & NGO Desk <i class="fa-solid fa-briefcase ml-2" style="color:var(--gold)"></i>
+            </a>
+            <button class="chip px-5 py-3 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                    onclick="openTrack()">
+              Track with REF <i class="fa-solid fa-hashtag ml-2" style="color:var(--sky)"></i>
+            </button>
+          </div>
+
+          <div class="mt-5 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+            <i class="fa-solid fa-circle-info mr-1"></i>
+            Tip: After review, you can send via WhatsApp (fast) or Email (corporate standard).
+          </div>
+        </div>
+
+        <div class="md:col-span-5">
+          <div class="glass2 rounded-[26px] p-6">
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
+              Quick Start
+            </div>
+            <div class="mt-2 text-sm font-bold leading-relaxed" style="color:rgba(229,231,235,.92);">
+              Choose a service → fill the form → review summary → send to Operations (WhatsApp or Email).
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-2">
+              <button class="chip rounded-2xl px-3 py-3 text-left hover:shadow-sm transition"
+                      onclick="openService('svc-flight-intl')">
+                <div class="text-xs font-extrabold"><i class="fa-solid fa-plane-up mr-2" style="color:var(--sky)"></i> Flights</div>
+                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Quote / Book</div>
+              </button>
+              <button class="chip rounded-2xl px-3 py-3 text-left hover:shadow-sm transition"
+                      onclick="openService('svc-cargo')">
+                <div class="text-xs font-extrabold"><i class="fa-solid fa-box mr-2" style="color:var(--gold)"></i> Cargo</div>
+                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Door-to-door</div>
+              </button>
+              <button class="chip rounded-2xl px-3 py-3 text-left hover:shadow-sm transition"
+                      onclick="openService('svc-ground')">
+                <div class="text-xs font-extrabold"><i class="fa-solid fa-car-side mr-2" style="color:var(--mint)"></i> Ground</div>
+                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Sudan dispatch</div>
+              </button>
+              <button class="chip rounded-2xl px-3 py-3 text-left hover:shadow-sm transition"
+                      onclick="openService('svc-accom')">
+                <div class="text-xs font-extrabold"><i class="fa-solid fa-hotel mr-2" style="color:rgba(229,231,235,.92)"></i> Stay</div>
+                <div class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Cairo / Sudan</div>
+              </button>
+            </div>
+
+            <div class="mt-4 rounded-2xl p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.04);">
+              <div class="text-xs font-extrabold" style="color:rgba(229,231,235,.92);">
+                <i class="fa-solid fa-lock mr-2" style="color:rgba(163,178,199,.95)"></i> Data minimization
+              </div>
+              <div class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">
+                We collect only the details needed to process the request. <span class="font-extrabold">No card details</span> on this portal.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+    DARAL IN SUDAN (Since 1995)
+  ========================== -->
+  <section class="max-w-7xl mx-auto px-4 pb-8">
+    <div class="glass rounded-[28px] p-7 md:p-10">
+      <div class="flex items-start md:items-center justify-between gap-4 flex-wrap">
+        <div>
+          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Company snapshot</div>
+          <h2 class="mt-2 text-2xl md:text-3xl font-black">
+            Daral in Sudan — Established <span style="color:var(--gold)">1995</span>
+          </h2>
+          <p class="mt-2 text-sm md:text-base font-semibold" style="color:var(--muted); max-width: 80ch;">
+            Sudan-based operational experience, structured routing, and corporate-friendly request handling across Egypt ↔ Sudan corridors.
+          </p>
+        </div>
+
+        <div class="flex gap-2 flex-wrap">
+          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+            <i class="fa-solid fa-building mr-2" style="color:var(--sky)"></i> Khartoum HQ (Sudan)
+          </span>
+          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+            <i class="fa-solid fa-certificate mr-2" style="color:var(--gold)"></i> IATA (renewed 2022)
+          </span>
+          <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold">
+            <i class="fa-solid fa-route mr-2" style="color:var(--mint)"></i> Ops-grade routing
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-7 grid lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-7">
+          <div class="glass2 rounded-[26px] p-6">
+            <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">
+              Why this matters to corporates/NGOs
+            </div>
+            <ul class="mt-3 space-y-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+              <li><i class="fa-solid fa-check mr-2" style="color:var(--mint)"></i> Reference-based tracking (REF) for every request</li>
+              <li><i class="fa-solid fa-check mr-2" style="color:var(--mint)"></i> Operations desk routing (WhatsApp + Email)</li>
+              <li><i class="fa-solid fa-check mr-2" style="color:var(--mint)"></i> Compliance-aware workflow (OFAC/KYC when applicable)</li>
+              <li><i class="fa-solid fa-check mr-2" style="color:var(--mint)"></i> Data minimization & no card collection on the portal</li>
+            </ul>
+
+            <div class="mt-5 rounded-2xl p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.04);">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Official address (Sudan)</div>
+              <div class="mt-2 text-sm font-semibold" style="color:rgba(229,231,235,.92);">
+                32–33 Ground Floor, Marhij Building, Al Jumhuriya Street, Khartoum, Sudan
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 grid md:grid-cols-3 gap-3">
+            <div class="glass2 rounded-[22px] p-5">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">1995</div>
+              <div class="mt-1 font-black">Established in Sudan</div>
+              <div class="mt-2 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Operational experience and local execution.</div>
+            </div>
+            <div class="glass2 rounded-[22px] p-5">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">2022</div>
+              <div class="mt-1 font-black">IATA renewal</div>
+              <div class="mt-2 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Updated accreditation record (as provided).</div>
+            </div>
+            <div class="glass2 rounded-[22px] p-5">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Today</div>
+              <div class="mt-1 font-black">Egypt ↔ Sudan desk</div>
+              <div class="mt-2 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Structured intake + REF tracking + fast routing.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass2 rounded-[26px] p-6">
+            <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">
+              Sudan coverage (operational highlights)
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot mr-2" style="color:var(--gold)"></i> Port Sudan</span>
+              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot mr-2" style="color:var(--gold)"></i> Khartoum</span>
+              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot mr-2" style="color:var(--gold)"></i> Kassala</span>
+              <span class="chip px-3 py-2 rounded-2xl text-xs font-extrabold"><i class="fa-solid fa-location-dot mr-2" style="color:var(--gold)"></i> Dongola</span>
+            </div>
+
+            <div class="mt-4 rounded-[22px] p-5" style="border:1px solid var(--line); background:rgba(255,255,255,.04);">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
+                Document requests
+              </div>
+              <div class="mt-2 text-sm font-semibold" style="color:rgba(229,231,235,.92);">
+                Need company documents? Send a request with your REF to
+                <a class="link" href="#" onclick="mailtoDocs(); return false;">info@daral-sd.com</a>.
+              </div>
+              <button class="mt-4 chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                      onclick="mailtoDocs()">
+                Request documents by email <i class="fa-solid fa-arrow-right ml-2" style="color:var(--sky)"></i>
+              </button>
+            </div>
+
+            <div class="mt-4 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-circle-info mr-1"></i> This section is intentionally concise for corporate acceptability (no inflated claims).
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+    SERVICES + FORMS
+  ========================== -->
+  <main id="services" class="max-w-7xl mx-auto px-4 pb-24">
+
+    <!-- Segmentation -->
+    <div class="flex items-center justify-between gap-3 flex-wrap mb-5">
       <div>
-        <h1 class="text-3xl font-black">Daral – Operations Portal</h1>
-        <p class="text-sm text-slate-300 mt-1">
-          Egypt ↔ Sudan | Travel & Logistics Requests
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight">Request Services</h2>
+        <p class="text-sm md:text-base font-semibold" style="color:var(--muted);">
+          Individuals & corporate/NGO flows — same global-standard intake, different routing options.
         </p>
       </div>
-      <a href="index-ar.html"
-         onclick="localStorage.setItem('daral_lang','ar')"
-         class="px-4 py-2 rounded-xl border border-slate-500 text-sm font-bold">
-        العربية
-      </a>
+      <div class="flex gap-2 flex-wrap">
+        <button id="tabIndividuals" class="px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                style="background:rgba(56,189,248,.14); border:1px solid rgba(56,189,248,.25);"
+                onclick="setTab('individuals')">
+          Individuals
+        </button>
+        <button id="tabCorporate" class="chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                onclick="setTab('corporate')">
+          Corporate / NGO
+        </button>
+      </div>
+    </div>
+
+    <!-- Service Cards -->
+    <div id="cardsIndividuals" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-flight-intl')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Flights</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-plane-up mr-2" style="color:var(--sky)"></i> International (Egypt ↔ Sudan)
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Quote or book — structured route, dates, passengers.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Quote/Book</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-flight-dom')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Flights</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-plane-circle-check mr-2" style="color:var(--gold)"></i> Domestic Sudan
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Coordination request — route, date, priority.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Request</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-cargo')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Logistics</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-box-open mr-2" style="color:var(--mint)"></i> Cargo (Door-to-Door)
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Weight, pieces, pickup & delivery details.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Quote</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-ground')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Sudan ops</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-car-side mr-2" style="color:rgba(229,231,235,.92)"></i> Ground Transport (Sudan)
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Pickup, transfers, inter-city, vehicles.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Dispatch</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-bus')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Land travel</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-bus mr-2" style="color:var(--sky)"></i> Bus / Land Transport
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Seat request for individuals, families, groups.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Seats</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-accom')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Stay</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-hotel mr-2" style="color:var(--gold)"></i> Accommodation (Cairo / Sudan)
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Dates, guests, preferences, budget.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Options</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition md:col-span-2 xl:col-span-3"
+              onclick="openService('svc-addons')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Premium add-ons</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-star mr-2" style="color:rgba(229,231,235,.92)"></i> Meet & Assist / Limo / eSIM
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Airport services and premium handling.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">VIP</span>
+        </div>
+      </button>
+    </div>
+
+    <div id="cardsCorporate" class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-corporate-desk')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Corporate / NGO</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-briefcase mr-2" style="color:var(--gold)"></i> Corporate Desk Request
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Mission travel, executives, groups (10+), long stay (30–90 days).
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Priority</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="openService('svc-partnership')">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Partnership</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-handshake mr-2" style="color:var(--sky)"></i> RFP / Partnership
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Airlines, hotels, transport, corporates, NGOs.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">RFP</span>
+        </div>
+      </button>
+
+      <button class="glass rounded-[26px] p-6 text-left hover:shadow-lg transition"
+              onclick="document.getElementById('corporatePack').scrollIntoView({behavior:'smooth'})">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">One-page</div>
+            <div class="mt-2 text-xl font-black">
+              <i class="fa-solid fa-file-lines mr-2" style="color:var(--mint)"></i> Corporate Pack
+            </div>
+            <div class="mt-2 text-sm font-semibold" style="color:var(--muted);">
+              Coverage, workflow, invoicing, compliance, contacts.
+            </div>
+          </div>
+          <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">View</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="mt-10 mb-6 flex items-center gap-3">
+      <div class="h-px flex-1" style="background:var(--line)"></div>
+      <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">
+        Request Forms (Global Standard)
+      </div>
+      <div class="h-px flex-1" style="background:var(--line)"></div>
+    </div>
+
+    <!-- =========================
+      FORMS
+    ========================== -->
+    <section id="forms" class="space-y-4">
+
+      <!-- Helper banner -->
+      <div class="glass2 rounded-[26px] p-5">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div class="text-sm font-semibold" style="color:rgba(229,231,235,.92);">
+            <i class="fa-solid fa-circle-check mr-2" style="color:var(--mint)"></i>
+            Each submission generates a <b>REF</b> and a clean summary for WhatsApp or Email.
+          </div>
+          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+            Keyboard: <span class="kbd">Esc</span> close review • <span class="kbd">Ctrl</span> + <span class="kbd">K</span> track REF
+          </div>
+        </div>
+      </div>
+
+      <!-- 1) International Flights -->
+      <div id="svc-flight-intl" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Flights</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-plane-up mr-2" style="color:var(--sky)"></i> International (Egypt ↔ Sudan)</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Quote or Book — structured itinerary and passenger details.</p>
+            </div>
+            <div class="flex gap-2">
+              <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+              <button class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold hover:shadow-sm" onclick="scrollToTop()">
+                Back to top
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="International Flight (Egypt ↔ Sudan)" data-tags="[PUBLIC] [FLIGHT]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name (as passport, EN)</label>
+              <input required name="fullName" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="SURNAME / GIVEN NAME">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+              <div class="mt-2 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">
+                Hint: any international format is accepted (e.g. +20…, +249…).
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Request Type</label>
+              <select name="reqType" data-label="Request" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="QUOTE">QUOTE</option>
+                <option value="BOOK">BOOK</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Trip Type</label>
+              <select name="tripType" data-label="Trip" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" onchange="toggleReturnDate(this,'intlReturnWrap')">
+                <option value="ONE WAY">One Way</option>
+                <option value="ROUND TRIP">Round Trip</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Preferred Airline (optional)</label>
+              <input name="airline" data-label="Preferred airline" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Any / Badr / Tarco">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">From (City / Airport)</label>
+              <input required name="from" data-label="From" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Cairo (CAI) / Port Sudan (PZU)">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">To (City / Airport)</label>
+              <input required name="to" data-label="To" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Port Sudan (PZU) / Cairo (CAI)">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Departure Date</label>
+              <input required type="date" name="depDate" data-label="Departure date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div id="intlReturnWrap" class="hidden">
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Return Date</label>
+              <input type="date" name="retDate" data-label="Return date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div class="flex items-center gap-3 mt-7">
+              <input type="checkbox" name="flex" data-label="Flexible dates" class="h-5 w-5 accent-sky-400">
+              <span class="text-sm font-bold" style="color:rgba(163,178,199,.92);">Flexible dates</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Adults</label>
+              <input required type="number" min="1" value="1" name="adults" data-label="Adults" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Children</label>
+              <input type="number" min="0" value="0" name="children" data-label="Children" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Infants</label>
+              <input type="number" min="0" value="0" name="infants" data-label="Infants" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Baggage (optional)</label>
+              <input name="baggage" data-label="Baggage" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Extra piece / 46KG">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Any details that help operations..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-lock mr-1"></i> <span id="noCardLine1"></span>
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(56,189,248,1), rgba(52,211,153,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 2) Domestic Flights Sudan -->
+      <div id="svc-flight-dom" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Flights</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-plane-circle-check mr-2" style="color:var(--gold)"></i> Domestic Sudan</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Coordination request — flexible and operations-led.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Domestic Flight (Sudan)" data-tags="[PUBLIC] [FLIGHT]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="SD">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name (EN)</label>
+              <input required name="fullName" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="SURNAME / GIVEN NAME">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+249… / +20…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Route</label>
+              <select required name="route" data-label="Route" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Port Sudan (PZU) → Khartoum (KRT)">Port Sudan → Khartoum</option>
+                <option value="Khartoum (KRT) → Port Sudan (PZU)">Khartoum → Port Sudan</option>
+                <option value="Port Sudan (PZU) → Dongola (DOG)">Port Sudan → Dongola</option>
+                <option value="Port Sudan (PZU) → Kassala (KSL)">Port Sudan → Kassala</option>
+                <option value="Other (write in notes)">Other (write in notes)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Preferred Date</label>
+              <input required type="date" name="date" data-label="Date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Priority</label>
+              <select name="priority" data-label="Priority" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="NORMAL">NORMAL</option>
+                <option value="URGENT">URGENT</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Adults</label>
+              <input required type="number" min="1" value="1" name="adults" data-label="Adults" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Children</label>
+              <input type="number" min="0" value="0" name="children" data-label="Children" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div class="flex items-center gap-3 mt-7">
+              <input type="checkbox" name="flex" data-label="Flexible dates" class="h-5 w-5 accent-amber-400">
+              <span class="text-sm font-bold" style="color:rgba(163,178,199,.92);">Flexible dates</span>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Baggage (optional)</label>
+              <input name="baggage" data-label="Baggage" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Normal / Extra">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Medical / NGO / other routes..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-circle-check mr-1"></i> Routed to Sudan coordination desk.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(251,191,36,1), rgba(56,189,248,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 3) Cargo -->
+      <div id="svc-cargo" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Cargo</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-box-open mr-2" style="color:var(--mint)"></i> Door-to-Door Shipping</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Weight, pieces, pickup & delivery details.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Cargo (Door-to-Door)" data-tags="[PUBLIC] [CARGO]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Sender Name</label>
+              <input required name="senderName" data-label="Sender" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Cargo Type</label>
+              <select required name="cargoType" data-label="Type" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Personal Luggage">Personal Luggage</option>
+                <option value="Household / Furniture">Household / Furniture</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Other (write in notes)">Other (write in notes)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Estimated Weight (KG)</label>
+              <input required type="number" min="1" name="weight" data-label="Weight (KG)" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="e.g. 120">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Pieces</label>
+              <input required type="number" min="1" value="1" name="pieces" data-label="Pieces" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Pickup (City / Street / Landmark)</label>
+              <input required name="pickup" data-label="Pickup" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Street / Area / Landmark">
+              <div class="mt-2 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Format helper: Street • Area • Landmark</div>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Delivery (City / Street / Landmark)</label>
+              <input required name="delivery" data-label="Delivery" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Street / Area / Landmark">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Receiver Name</label>
+              <input required name="receiverName" data-label="Receiver" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Receiver Phone</label>
+              <input required name="receiverPhone" data-label="Receiver phone" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+249… / +20…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Ready Date</label>
+              <input required type="date" name="readyDate" data-label="Ready date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Urgency</label>
+              <select name="urgency" data-label="Urgency" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="NORMAL">NORMAL</option>
+                <option value="URGENT">URGENT</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Dimensions, fragile, door-to-door details..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-route mr-1"></i> Accurate addresses speed up pricing and routing.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(52,211,153,1), rgba(56,189,248,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 4) Ground Transport Sudan -->
+      <div id="svc-ground" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Ground Services</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-car-side mr-2" style="color:rgba(229,231,235,.92)"></i> Sudan Transport & Dispatch</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Airport pickup, city transfer, inter-city, corporate/NGO vehicles.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Ground Transport (Sudan)" data-tags="[PUBLIC] [GROUND]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="SD">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name</label>
+              <input required name="fullName" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+249… / +20…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">City</label>
+              <select required name="city" data-label="City" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Port Sudan">Port Sudan</option>
+                <option value="Khartoum">Khartoum</option>
+                <option value="Other (write in notes)">Other (write in notes)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Date</label>
+              <input required type="date" name="date" data-label="Date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Time</label>
+              <input required type="time" name="time" data-label="Time" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Pickup (Street / Area / Landmark)</label>
+              <input required name="pickup" data-label="Pickup" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Airport / Hotel / Address">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Drop-off (Street / Area / Landmark)</label>
+              <input required name="dropoff" data-label="Drop-off" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Hotel / Office / Address">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Passengers</label>
+              <input required type="number" min="1" value="1" name="pax" data-label="Passengers" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Vehicle Type</label>
+              <select name="vehicle" data-label="Vehicle" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Van">Van</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Service</label>
+              <select name="service" data-label="Service" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="Airport Pickup">Airport Pickup</option>
+                <option value="City Transfer">City Transfer</option>
+                <option value="Inter-city">Inter-city</option>
+                <option value="Corporate/NGO">Corporate/NGO</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Flight number if airport pickup, luggage, special handling..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-location-dot mr-1"></i> Add flight number in notes if pickup from airport.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(229,231,235,1), rgba(56,189,248,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 5) Bus -->
+      <div id="svc-bus" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Land Travel</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-bus mr-2" style="color:var(--sky)"></i> Bus / Land Transport</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Seat reservation request for individuals, families, and groups.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Bus / Land Transport" data-tags="[PUBLIC] [LAND]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name</label>
+              <input required name="fullName" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">From</label>
+              <input required name="from" data-label="From" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Cairo / ...">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">To</label>
+              <input required name="to" data-label="To" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Port Sudan / ...">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Travel Date</label>
+              <input required type="date" name="date" data-label="Date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Seats</label>
+              <input required type="number" min="1" value="1" name="seats" data-label="Seats" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Luggage</label>
+              <select name="luggage" data-label="Luggage" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="Normal">Normal</option>
+                <option value="Extra">Extra</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Group Type</label>
+              <select name="group" data-label="Group type" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="Individual">Individual</option>
+                <option value="Family">Family</option>
+                <option value="Group">Group</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Special needs, preferred station..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-ticket mr-1"></i> We confirm availability and reply with options.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(56,189,248,1), rgba(229,231,235,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 6) Accommodation -->
+      <div id="svc-accom" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Accommodation</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-hotel mr-2" style="color:var(--gold)"></i> Cairo / Sudan</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Request options — dates, guests, preferences & budget.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Accommodation (Cairo / Sudan)" data-tags="[PUBLIC] [STAY]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Guest Name</label>
+              <input required name="guestName" data-label="Guest" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">City</label>
+              <select required name="city" data-label="City" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Cairo">Cairo</option>
+                <option value="Port Sudan">Port Sudan</option>
+                <option value="Khartoum (conditional)">Khartoum (conditional)</option>
+                <option value="Other (write in notes)">Other (write in notes)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Check-in</label>
+              <input required type="date" name="checkin" data-label="Check-in" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Check-out</label>
+              <input required type="date" name="checkout" data-label="Check-out" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Guests</label>
+              <input required type="number" min="1" value="1" name="guests" data-label="Guests" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Room Type</label>
+              <select name="room" data-label="Room" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Family">Family</option>
+                <option value="Apartment">Apartment</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Budget (optional)</label>
+              <input name="budget" data-label="Budget" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Range / per night">
+            </div>
+          </div>
+
+          <!-- Corporate options (optional but helpful) -->
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="chip rounded-2xl px-4 py-3 flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="invoice" data-label="Invoice required" class="h-5 w-5 accent-amber-400">
+              <span class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Invoice required?</span>
+              <span class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">(useful for corporate/NGO)</span>
+            </label>
+            <label class="chip rounded-2xl px-4 py-3 flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="contract" data-label="Contract required" class="h-5 w-5 accent-sky-400">
+              <span class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Contract required?</span>
+              <span class="text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">(if applicable)</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Near airport, long stay, preferred area..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-circle-check mr-1"></i> We reply with options and confirmation steps.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(251,191,36,1), rgba(52,211,153,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 7) Add-ons -->
+      <div id="svc-addons" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Add-ons</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-star mr-2" style="color:rgba(229,231,235,.92)"></i> Meet & Assist / Limo / eSIM</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Airport services and premium handling.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Individuals</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Meet & Assist / Limo / eSIM" data-tags="[PUBLIC] [VIP]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name</label>
+              <input required name="fullName" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp Number</label>
+              <input required name="whats" data-label="WhatsApp" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Service Type</label>
+              <select required name="service" data-label="Service type" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Meet & Assist (Arrival)">Meet & Assist (Arrival)</option>
+                <option value="Meet & Assist (Departure)">Meet & Assist (Departure)</option>
+                <option value="Airport Pickup">Airport Pickup</option>
+                <option value="Limo">Limo</option>
+                <option value="eSIM">eSIM</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Date</label>
+              <input required type="date" name="date" data-label="Date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Time</label>
+              <input required type="time" name="time" data-label="Time" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Airport / Location</label>
+              <input required name="location" data-label="Location" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="CAI / PZU / KRT / Address">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Flight Number (optional)</label>
+              <input name="flightNo" data-label="Flight no." class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="J4-xxx / 3T-xxx">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Notes (optional)</label>
+            <textarea name="notes" data-label="Notes" rows="2" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Passengers, luggage, eSIM type, special instructions..."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-star mr-1"></i> Premium handling subject to availability and confirmation.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(229,231,235,1), rgba(251,191,36,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- =========================
+        CORPORATE & NGO DESK
+      ========================== -->
+      <div id="svc-corporate-desk" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Corporate / NGO</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-briefcase mr-2" style="color:var(--gold)"></i> Corporate Desk Request</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Missions, executive travel, group movement (10+), and monthly housing (30–90 days).</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Priority</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Corporate / NGO Desk" data-tags="[CORP/NGO] [PRIORITY]" onsubmit="return reviewBeforeSend(event)">
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="md:col-span-2">
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Organization / Company</label>
+              <input required name="org" data-label="Organization" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Company / NGO name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Country</label>
+              <input name="country" data-label="Country" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Egypt / Sudan / ...">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Contact Person</label>
+              <input required name="contact" data-label="Contact person" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">WhatsApp / Phone</label>
+              <input required name="whats" data-label="Contact phone" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Use case</label>
+              <select required name="usecase" data-label="Use case" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="NGO mission travel coordination">NGO mission travel coordination</option>
+                <option value="Executive / VIP travel">Executive / VIP travel</option>
+                <option value="Group movement (10+)">Group movement (10+)</option>
+                <option value="Monthly housing (30–90 days)">Monthly housing (30–90 days)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Desired start date</label>
+              <input type="date" name="startDate" data-label="Start date" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Routing desk</label>
+              <select name="desk" data-label="Routing desk" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="EG">Egypt Ops (default)</option>
+                <option value="SD">Sudan Ops</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="chip rounded-2xl px-4 py-3 flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="invoice" data-label="Invoice required" class="h-5 w-5 accent-amber-400">
+              <span class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Invoice required?</span>
+            </label>
+            <label class="chip rounded-2xl px-4 py-3 flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" name="contract" data-label="Contract required" class="h-5 w-5 accent-sky-400">
+              <span class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Contract required?</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Details / Scope</label>
+            <textarea required name="details" data-label="Scope details" rows="3" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
+                      placeholder="Routes, passenger count, cities, housing needs, schedule constraints, etc."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-bolt mr-1" style="color:var(--gold)"></i> Priority handling during operating hours for corporate/NGO requests.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(251,191,36,1), rgba(56,189,248,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Partnership / RFP -->
+      <div id="svc-partnership" class="glass rounded-[28px] overflow-hidden">
+        <div class="p-6 md:p-7 border-b" style="border-color: var(--line);">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Partnership</div>
+              <h3 class="text-2xl font-black"><i class="fa-solid fa-handshake mr-2" style="color:var(--sky)"></i> RFP / Partnership Request</h3>
+              <p class="text-sm font-semibold mt-1" style="color:var(--muted);">Airlines, hotels, transport, corporates, NGOs — request a discussion.</p>
+            </div>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Email-friendly</span>
+          </div>
+        </div>
+
+        <form class="p-6 md:p-7 space-y-5" data-service="Partnership / RFP" data-tags="[B2B] [RFP]" onsubmit="return reviewBeforeSend(event)">
+          <input type="hidden" name="desk" value="EG">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Company / Organization</label>
+              <input required name="company" data-label="Company" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Legal name">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Website (optional)</label>
+              <input name="website" data-label="Website" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="https://">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Country</label>
+              <input name="country" data-label="Country" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Egypt / Sudan / ...">
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Partnership type</label>
+              <select required name="ptype" data-label="Partnership type" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+                <option value="">Select</option>
+                <option value="Airline">Airline</option>
+                <option value="Hotel / Housing">Hotel / Housing</option>
+                <option value="Transport / Fleet">Transport / Fleet</option>
+                <option value="Corporate / NGO">Corporate / NGO</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Contact email</label>
+              <input required type="email" name="email" data-label="Contact email" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="name@company.com">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Message</label>
+            <textarea required name="message" data-label="Message" rows="3" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
+                      placeholder="Tell us what you want to propose and the scope."></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-envelope mr-1"></i> Best sent by email for documentation and follow-up.
+            </div>
+            <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                    style="background:linear-gradient(90deg, rgba(56,189,248,1), rgba(229,231,235,1));">
+              Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- =========================
+      WHY DARAL
+    ========================== -->
+    <section class="mt-10 glass rounded-[28px] p-7 md:p-10">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h3 class="text-2xl font-black">Why Daral</h3>
+          <p class="text-sm md:text-base font-semibold mt-1" style="color:var(--muted);">
+            Corporate-friendly intake without inflated claims.
+          </p>
+        </div>
+        <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Trust & Operations</span>
+      </div>
+
+      <div class="mt-7 grid md:grid-cols-4 gap-4">
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">#1</div>
+          <div class="mt-2 font-black"><i class="fa-solid fa-diagram-project mr-2" style="color:var(--sky)"></i> Operations-grade routing</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">Requests routed via WhatsApp/Email with clean structure.</div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">#2</div>
+          <div class="mt-2 font-black"><i class="fa-solid fa-hashtag mr-2" style="color:var(--gold)"></i> Reference ID (REF)</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">Every request gets a REF for follow-up and tracking.</div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">#3</div>
+          <div class="mt-2 font-black"><i class="fa-solid fa-scale-balanced mr-2" style="color:rgba(229,231,235,.92)"></i> Compliance-aware</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">OFAC/KYC checks when applicable prior to confirmation.</div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">#4</div>
+          <div class="mt-2 font-black"><i class="fa-solid fa-lock mr-2" style="color:var(--mint)"></i> Data minimization</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">No card collection on this portal; only operational details.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      CORPORATE PACK
+    ========================== -->
+    <section id="corporate" class="mt-10 glass rounded-[28px] p-7 md:p-10">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h3 class="text-2xl font-black">Corporate Pack</h3>
+          <p class="text-sm md:text-base font-semibold mt-1" style="color:var(--muted);">
+            One-page summary for corporate & NGO stakeholders.
+          </p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <button class="chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                  onclick="openService('svc-corporate-desk')">
+            Request corporate account <i class="fa-solid fa-arrow-right ml-2" style="color:var(--gold)"></i>
+          </button>
+          <button class="chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                  onclick="mailtoCorporatePack()">
+            Email corporate pack <i class="fa-solid fa-envelope ml-2" style="color:var(--sky)"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="corporatePack" class="mt-7 grid lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-7 glass2 rounded-[26px] p-6">
+          <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Workflow</div>
+          <div class="mt-3 grid md:grid-cols-3 gap-3">
+            <div class="rounded-[18px] p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.03);">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Step 1</div>
+              <div class="mt-1 font-black">Submit</div>
+              <div class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Structured request intake form.</div>
+            </div>
+            <div class="rounded-[18px] p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.03);">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Step 2</div>
+              <div class="mt-1 font-black">Ops confirms</div>
+              <div class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Options, availability, and next steps.</div>
+            </div>
+            <div class="rounded-[18px] p-4" style="border:1px solid var(--line); background:rgba(255,255,255,.03);">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Step 3</div>
+              <div class="mt-1 font-black">Deliver</div>
+              <div class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Confirmation & operational completion.</div>
+            </div>
+          </div>
+
+          <div class="mt-5 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            <i class="fa-solid fa-scale-balanced mr-2" style="color:rgba(229,231,235,.92)"></i>
+            <span id="complianceTextPack"></span>
+          </div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            <i class="fa-solid fa-lock mr-2" style="color:var(--mint)"></i>
+            <span id="noCardLine2"></span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 glass2 rounded-[26px] p-6">
+          <div class="text-sm font-extrabold" style="color:rgba(229,231,235,.92);">Use cases</div>
+          <div class="mt-3 grid gap-2">
+            <button class="chip rounded-2xl px-4 py-3 text-left hover:shadow-sm transition" onclick="openService('svc-corporate-desk')">
+              <div class="text-xs font-extrabold"><i class="fa-solid fa-people-group mr-2" style="color:var(--gold)"></i> NGO mission coordination</div>
+              <div class="text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Team movement, schedules, routes, documentation.</div>
+            </button>
+            <button class="chip rounded-2xl px-4 py-3 text-left hover:shadow-sm transition" onclick="openService('svc-corporate-desk')">
+              <div class="text-xs font-extrabold"><i class="fa-solid fa-user-tie mr-2" style="color:var(--sky)"></i> Executive / VIP travel</div>
+              <div class="text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Priority handling, airport services, ground dispatch.</div>
+            </button>
+            <button class="chip rounded-2xl px-4 py-3 text-left hover:shadow-sm transition" onclick="openService('svc-corporate-desk')">
+              <div class="text-xs font-extrabold"><i class="fa-solid fa-bus-simple mr-2" style="color:var(--mint)"></i> Group movement (10+)</div>
+              <div class="text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Seats, transfers, coordination, timelines.</div>
+            </button>
+            <button class="chip rounded-2xl px-4 py-3 text-left hover:shadow-sm transition" onclick="openService('svc-corporate-desk')">
+              <div class="text-xs font-extrabold"><i class="fa-solid fa-building mr-2" style="color:rgba(229,231,235,.92)"></i> Monthly housing (30–90)</div>
+              <div class="text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">Apartments/hotels, invoicing, terms if needed.</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      FEEDBACK & CX
+    ========================== -->
+    <section id="feedback" class="mt-10 glass rounded-[28px] p-7 md:p-10">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h3 class="text-2xl font-black">Feedback & Service Quality</h3>
+          <p class="text-sm md:text-base font-semibold mt-1" style="color:var(--muted);">
+            Structured feedback helps operations improve and respond faster.
+          </p>
+        </div>
+        <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">CX Standard</span>
+      </div>
+
+      <form class="mt-7 space-y-5" data-service="Feedback / Complaint" data-tags="[CX]" onsubmit="return reviewBeforeSend(event)">
+        <input type="hidden" name="desk" value="EG">
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Full Name</label>
+            <input required name="name" data-label="Name" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="Full name">
+          </div>
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Contact (WhatsApp / Phone)</label>
+            <input required name="contact" data-label="Contact" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="+20… / +249…">
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="md:col-span-2">
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Category</label>
+            <select required name="category" data-label="Category" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+              <option value="">Select</option>
+              <option value="Speed / SLA">Speed / SLA</option>
+              <option value="Communication">Communication</option>
+              <option value="Punctuality">Punctuality</option>
+              <option value="Pricing clarity">Pricing clarity</option>
+              <option value="Issue resolution">Issue resolution</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Severity</label>
+            <select required name="severity" data-label="Severity" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold">
+              <option value="LOW">LOW</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="HIGH">HIGH</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-3 mt-7">
+            <input type="checkbox" name="followup" data-label="Need follow-up" class="h-5 w-5 accent-rose-400">
+            <span class="text-sm font-bold" style="color:rgba(163,178,199,.92);">Need follow-up?</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">Message</label>
+          <textarea required name="msg" data-label="Message" rows="3" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold"
+                    placeholder="Describe what happened and what outcome you expect."></textarea>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+            <i class="fa-solid fa-envelope mr-1"></i> A copy can be sent via email with your REF for audit trail.
+          </div>
+          <button class="px-5 py-3 rounded-2xl text-slate-950 font-extrabold hover:shadow-md transition"
+                  style="background:linear-gradient(90deg, rgba(251,113,133,1), rgba(56,189,248,1));">
+            Review & Send <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- =========================
+      FAQ (5)
+    ========================== -->
+    <section class="mt-10 glass rounded-[28px] p-7 md:p-10">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <h3 class="text-2xl font-black">FAQ</h3>
+          <p class="text-sm md:text-base font-semibold mt-1" style="color:var(--muted);">
+            Five answers that reduce operational back-and-forth.
+          </p>
+        </div>
+        <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Concise</span>
+      </div>
+
+      <div class="mt-7 grid md:grid-cols-2 gap-4">
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="font-black">How pricing works?</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            We provide options and pricing based on your request details and supplier availability.
+          </div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="font-black">What information do you need?</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            Only the minimum operational details needed to process the request (route, dates, pax, locations).
+          </div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="font-black">How do long stays work (30–90 days)?</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            Submit your scope via Corporate Desk. We reply with options and confirmation steps.
+          </div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5">
+          <div class="font-black">Can you issue invoices?</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            If needed, mark “Invoice required” in your request so operations routes accordingly.
+          </div>
+        </div>
+        <div class="glass2 rounded-[22px] p-5 md:col-span-2">
+          <div class="font-black">What about compliance?</div>
+          <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+            <span id="complianceTextFAQ"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      FOOTER
+    ========================== -->
+    <footer class="mt-10 pb-10">
+      <div class="max-w-7xl mx-auto glass rounded-[28px] p-7 md:p-10">
+        <div class="grid lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-4">
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Daral</div>
+            <div class="mt-2 text-sm font-semibold leading-relaxed" style="color:rgba(163,178,199,.92);">
+              Dar Al Khartoum Travel & Tourism Co. Ltd — Established 1995.<br/>
+              Operations-led portal for Egypt ↔ Sudan travel & logistics requests.
+            </div>
+
+            <div class="mt-4 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-location-dot mr-2" style="color:var(--gold)"></i>
+              32–33 Ground Floor, Marhij Building, Al Jumhuriya Street, Khartoum, Sudan
+            </div>
+
+            <div class="mt-4 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-shield mr-2" style="color:rgba(229,231,235,.92)"></i>
+              <span id="complianceTextFooter"></span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4">
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Contact</div>
+            <div class="mt-3 space-y-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+              <div>
+                <i class="fa-solid fa-phone mr-2" style="color:rgba(229,231,235,.92)"></i>
+                Egypt Ops: <span class="font-black text-slate-100" id="egTelText"></span>
+              </div>
+              <div>
+                <i class="fa-solid fa-phone mr-2" style="color:rgba(229,231,235,.92)"></i>
+                Sudan Ops: <span class="font-black text-slate-100" id="sdTelText"></span>
+              </div>
+              <div>
+                <i class="fa-solid fa-envelope mr-2" style="color:var(--sky)"></i>
+                Email: <a class="link" href="#" id="emailFooterLink">info@daral-sd.com</a>
+                <button class="ml-2 chip px-2 py-1 rounded-xl text-[11px] font-extrabold" onclick="copyText(OPS_EMAIL)">
+                  Copy
+                </button>
+              </div>
+
+              <div class="pt-2 text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+                <i class="fa-solid fa-clock mr-2" style="color:var(--gold)"></i>
+                <span id="opsHoursText2"></span><br/>
+                <i class="fa-solid fa-reply mr-2" style="color:var(--sky)"></i>
+                <span id="opsRespText2"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4">
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">WhatsApp QR</div>
+            <div class="mt-3 grid grid-cols-2 gap-3">
+              <div class="glass2 rounded-[20px] p-4">
+                <div class="text-[11px] font-extrabold" style="color:rgba(229,231,235,.92);">Egypt Ops</div>
+                <div id="qrEG" class="mt-2 rounded-xl overflow-hidden"></div>
+                <div class="mt-2 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Scan to chat</div>
+              </div>
+              <div class="glass2 rounded-[20px] p-4">
+                <div class="text-[11px] font-extrabold" style="color:rgba(229,231,235,.92);">Sudan Ops</div>
+                <div id="qrSD" class="mt-2 rounded-xl overflow-hidden"></div>
+                <div class="mt-2 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">Scan to chat</div>
+              </div>
+            </div>
+
+            <div class="mt-4 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">
+              If WhatsApp is unavailable, email us with your REF at <span class="font-extrabold text-slate-100">info@daral-sd.com</span>.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+             style="border-color: var(--line);">
+          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+            © <span id="year"></span> Daral. All rights reserved.
+          </div>
+          <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+            <span class="mr-3"><i class="fa-solid fa-lock mr-1"></i> <span id="noCardLine3"></span></span>
+            <span class="chip px-3 py-1.5 rounded-full text-[11px] font-extrabold">Enterprise-ready intake</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- =========================
+    FLOATING WHATSAPP (EG)
+  ========================== -->
+  <a id="waFloat" href="#" target="_blank"
+     class="fixed bottom-6 right-6 h-14 w-14 rounded-full flex items-center justify-center text-slate-950 shadow-xl hover:scale-110 transition"
+     style="background:linear-gradient(135deg, rgba(52,211,153,1), rgba(56,189,248,1));">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+  <!-- =========================
+    REVIEW MODAL (Request Summary + REF)
+  ========================== -->
+  <div id="modalOverlay" class="hidden fixed inset-0 z-50">
+    <div class="absolute inset-0" style="background:rgba(0,0,0,.58)" onclick="closeReview()"></div>
+
+    <div class="relative max-w-3xl mx-auto mt-10 md:mt-16 px-4">
+      <div class="glass rounded-[28px] overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="p-6 md:p-7 border-b" style="border-color:var(--line)">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Request Review</div>
+              <h3 id="modalTitle" class="mt-1 text-2xl font-black">Summary</h3>
+              <p class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+                Please review your request before sending. A <b>REF</b> is included for tracking.
+              </p>
+            </div>
+            <button class="chip px-3 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                    onclick="closeReview()"
+                    aria-label="Close">
+              <i class="fa-solid fa-xmark mr-1"></i> Close <span class="kbd ml-2">Esc</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6 md:p-7 space-y-4">
+          <div class="grid md:grid-cols-2 gap-3">
+            <div class="glass2 rounded-[22px] p-4">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Service</div>
+              <div id="sumService" class="mt-2 text-sm font-black"></div>
+              <div id="sumTags" class="mt-1 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);"></div>
+            </div>
+            <div class="glass2 rounded-[22px] p-4">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Reference</div>
+              <div class="mt-2 flex items-center gap-2">
+                <div id="sumRef" class="text-sm font-black"></div>
+                <button class="chip px-3 py-1.5 rounded-xl text-[11px] font-extrabold hover:shadow-sm transition" onclick="copyText(document.getElementById('sumRef').textContent)">
+                  Copy REF
+                </button>
+                <button class="chip px-3 py-1.5 rounded-xl text-[11px] font-extrabold hover:shadow-sm transition" onclick="trackRefFromModal()">
+                  Track
+                </button>
+              </div>
+              <div class="mt-2 text-[12px] font-semibold" style="color:rgba(163,178,199,.92);">
+                If you contact us later, include your REF.
+              </div>
+            </div>
+          </div>
+
+          <div class="glass2 rounded-[22px] p-4">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Request summary</div>
+              <div class="flex gap-2 flex-wrap">
+                <button class="chip px-3 py-1.5 rounded-xl text-[11px] font-extrabold hover:shadow-sm transition" onclick="copySummary()">
+                  <i class="fa-solid fa-copy mr-1"></i> Copy summary
+                </button>
+              </div>
+            </div>
+
+            <pre id="summaryBox" class="mt-3 whitespace-pre-wrap text-[12px] leading-relaxed font-semibold soft-scroll"
+                 style="color:rgba(229,231,235,.92); max-height: 260px; overflow:auto;"></pre>
+
+            <div class="mt-3 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">
+              <i class="fa-solid fa-scale-balanced mr-1"></i> <span id="complianceTextModal"></span><br/>
+              <i class="fa-solid fa-lock mr-1"></i> <span id="noCardLine4"></span>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="text-xs font-semibold" style="color:rgba(163,178,199,.92);">
+              Choose a sending method:
+              <span class="chip px-2 py-1 rounded-xl text-[11px] font-extrabold ml-2">WhatsApp</span>
+              <span class="chip px-2 py-1 rounded-xl text-[11px] font-extrabold">Email</span>
+            </div>
+            <div class="flex gap-2 flex-wrap justify-end">
+              <button class="chip px-4 py-3 rounded-2xl text-xs font-extrabold hover:shadow-sm transition"
+                      onclick="sendEmail()">
+                Send via Email <i class="fa-solid fa-envelope ml-2" style="color:var(--sky)"></i>
+              </button>
+              <button class="px-4 py-3 rounded-2xl text-slate-950 text-xs font-extrabold hover:shadow-md transition"
+                      style="background:linear-gradient(90deg, rgba(52,211,153,1), rgba(56,189,248,1));"
+                      onclick="sendWhatsApp()">
+                Send via WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</header>
 
-<!-- SERVICES -->
-<main class="max-w-6xl mx-auto px-4 pb-20">
+  <!-- =========================
+    TRACK MODAL (REF)
+  ========================== -->
+  <div id="trackOverlay" class="hidden fixed inset-0 z-50">
+    <div class="absolute inset-0" style="background:rgba(0,0,0,.58)" onclick="closeTrack()"></div>
+    <div class="relative max-w-lg mx-auto mt-16 px-4">
+      <div class="glass rounded-[28px] p-6 md:p-7">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-extrabold tracking-widest uppercase" style="color:rgba(163,178,199,.92);">Track request</div>
+            <div class="mt-1 text-xl font-black">Check status using REF</div>
+            <div class="mt-2 text-sm font-semibold" style="color:rgba(163,178,199,.92);">
+              We will open WhatsApp with a short tracking message.
+            </div>
+          </div>
+          <button class="chip px-3 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition" onclick="closeTrack()">
+            <i class="fa-solid fa-xmark mr-1"></i> Close
+          </button>
+        </div>
 
-  <section class="grid md:grid-cols-2 gap-4 mt-6">
+        <div class="mt-5">
+          <label class="text-xs font-extrabold" style="color:rgba(163,178,199,.92);">REF</label>
+          <input id="trackRefInput" class="field w-full rounded-2xl px-4 py-3 mt-2 text-sm font-semibold" placeholder="e.g. 48392">
+        </div>
 
-    <div class="card p-6">
-      <h2 class="text-xl font-black mb-2">
-        <i class="fa-solid fa-plane mr-2 text-sky-400"></i>
-        Flights (Egypt ↔ Sudan)
-      </h2>
-      <form onsubmit="return submitForm(event,'Flights')">
-        <input class="field mt-3" required placeholder="Full Name" />
-        <input class="field mt-3" required placeholder="WhatsApp Number" />
-        <input class="field mt-3" required placeholder="From" />
-        <input class="field mt-3" required placeholder="To" />
-        <input type="date" class="field mt-3" required />
-        <button class="btn mt-4 w-full">Submit Request</button>
-      </form>
+        <div class="mt-4 flex gap-2 justify-end flex-wrap">
+          <button class="chip px-4 py-3 rounded-2xl text-xs font-extrabold hover:shadow-sm transition" onclick="copyText(document.getElementById('trackRefInput').value)">
+            Copy
+          </button>
+          <button class="px-4 py-3 rounded-2xl text-slate-950 text-xs font-extrabold hover:shadow-md transition"
+                  style="background:linear-gradient(90deg, rgba(52,211,153,1), rgba(56,189,248,1));"
+                  onclick="trackRef(document.getElementById('trackRefInput').value)">
+            Open WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
+          </button>
+        </div>
+
+        <div class="mt-3 text-[11px] font-semibold" style="color:rgba(163,178,199,.92);">
+          Tip: You can always email <b class="text-slate-100">info@daral-sd.com</b> with your REF.
+        </div>
+      </div>
     </div>
-
-    <div class="card p-6">
-      <h2 class="text-xl font-black mb-2">
-        <i class="fa-solid fa-box mr-2 text-amber-400"></i>
-        Cargo / Logistics
-      </h2>
-      <form onsubmit="return submitForm(event,'Cargo')">
-        <input class="field mt-3" required placeholder="Sender Name" />
-        <input class="field mt-3" required placeholder="WhatsApp Number" />
-        <input class="field mt-3" required placeholder="Pickup Address" />
-        <input class="field mt-3" required placeholder="Delivery Address" />
-        <button class="btn mt-4 w-full">Submit Request</button>
-      </form>
-    </div>
-
-    <div class="card p-6">
-      <h2 class="text-xl font-black mb-2">
-        <i class="fa-solid fa-car mr-2 text-emerald-400"></i>
-        Ground Transport (Sudan)
-      </h2>
-      <form onsubmit="return submitForm(event,'Ground Transport')">
-        <input class="field mt-3" required placeholder="Name" />
-        <input class="field mt-3" required placeholder="WhatsApp Number" />
-        <input class="field mt-3" required placeholder="City" />
-        <button class="btn mt-4 w-full">Submit Request</button>
-      </form>
-    </div>
-
-    <div class="card p-6">
-      <h2 class="text-xl font-black mb-2">
-        <i class="fa-solid fa-hotel mr-2 text-rose-400"></i>
-        Accommodation
-      </h2>
-      <form onsubmit="return submitForm(event,'Accommodation')">
-        <input class="field mt-3" required placeholder="Guest Name" />
-        <input class="field mt-3" required placeholder="WhatsApp Number" />
-        <input type="date" class="field mt-3" required />
-        <button class="btn mt-4 w-full">Submit Request</button>
-      </form>
-    </div>
-
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="max-w-6xl mx-auto px-4 pb-10">
-  <div class="card p-6 text-sm text-slate-300">
-    <p>© Daral – Dar Al Khartoum Travel & Tourism Co. Ltd</p>
-    <p class="mt-1">Operational Portal – No card data collected</p>
   </div>
-</footer>
 
-<script>
-function generateREF(){
-  return Math.floor(10000 + Math.random()*90000);
-}
+  <!-- =========================
+    TOAST
+  ========================== -->
+  <div id="toast" class="hidden fixed bottom-6 left-6 z-50">
+    <div class="glass rounded-[18px] px-4 py-3 flex items-center gap-3">
+      <i class="fa-solid fa-circle-check" style="color:var(--mint)"></i>
+      <div class="text-xs font-semibold" style="color:rgba(229,231,235,.92);">
+        Request prepared — REF: <span id="toastRef" class="font-black"></span>
+      </div>
+      <button class="chip px-3 py-1.5 rounded-xl text-[11px] font-extrabold hover:shadow-sm transition" onclick="copyText(document.getElementById('toastRef').textContent)">
+        Copy
+      </button>
+    </div>
+  </div>
 
-function submitForm(e,service){
-  e.preventDefault();
-  const ref = generateREF();
-  const msg =
-`DARAL – New Request
-Service: ${service}
-REF: ${ref}
+  <script>
+    // =========================
+    // INIT
+    // =========================
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-Please confirm availability and next steps.`;
+    // top links
+    document.getElementById("btnCallEG").href = "tel:" + OPS_TEL_EG;
+    document.getElementById("btnWAEG").href = "https://wa.me/" + OPS_WA_EG;
+    document.getElementById("btnWASD").href = "https://wa.me/" + OPS_WA_SD;
+    document.getElementById("waFloat").href = "https://wa.me/" + OPS_WA_EG;
+    document.getElementById("emailTextTop").textContent = OPS_EMAIL;
+    document.getElementById("btnEmailTop").href = "mailto:" + OPS_EMAIL;
+    document.getElementById("emailFooterLink").href = "mailto:" + OPS_EMAIL;
 
-  const wa = "https://wa.me/201113336672?text=" + encodeURIComponent(msg);
-  window.open(wa,"_blank");
-  alert("Request created\nREF: " + ref);
-  return false;
-}
-</script>
+    // footer phone texts
+    document.getElementById("egTelText").textContent = OPS_TEL_EG;
+    document.getElementById("sdTelText").textContent = OPS_TEL_SD;
 
+    // ops lines
+    document.getElementById("opsHoursText").textContent = OPERATING_HOURS;
+    document.getElementById("opsRespText").textContent = TYPICAL_RESPONSE;
+    document.getElementById("opsHoursText2").textContent = OPERATING_HOURS;
+    document.getElementById("opsRespText2").textContent = TYPICAL_RESPONSE;
+
+    // compliance / no-card
+    const complianceEls = ["complianceTextMini","complianceTextPack","complianceTextFAQ","complianceTextFooter","complianceTextModal"];
+    complianceEls.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = COMPLIANCE_LINE; });
+
+    const noCardEls = ["noCardLine1","noCardLine2","noCardLine3","noCardLine4"];
+    noCardEls.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = NO_CARD_LINE; });
+
+    // copy email button
+    document.getElementById("btnCopyEmailTop").addEventListener("click", ()=>copyText(OPS_EMAIL));
+
+    // QR codes
+    makeQR("qrEG", "https://wa.me/" + OPS_WA_EG);
+    makeQR("qrSD", "https://wa.me/" + OPS_WA_SD);
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape"){ closeReview(); closeTrack(); }
+      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
+        e.preventDefault();
+        openTrack();
+      }
+    });
+
+    // =========================
+    // TABS
+    // =========================
+    function setTab(tab){
+      const ind = document.getElementById("cardsIndividuals");
+      const corp = document.getElementById("cardsCorporate");
+      const t1 = document.getElementById("tabIndividuals");
+      const t2 = document.getElementById("tabCorporate");
+
+      if(tab === "corporate"){
+        ind.classList.add("hidden");
+        corp.classList.remove("hidden");
+        t1.className = "chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition";
+        t2.className = "px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition";
+        t2.style.background = "rgba(251,191,36,.14)";
+        t2.style.border = "1px solid rgba(251,191,36,.28)";
+        t1.removeAttribute("style");
+      } else {
+        corp.classList.add("hidden");
+        ind.classList.remove("hidden");
+        t2.className = "chip px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition";
+        t1.className = "px-4 py-2 rounded-2xl text-xs font-extrabold hover:shadow-sm transition";
+        t1.style.background = "rgba(56,189,248,.14)";
+        t1.style.border = "1px solid rgba(56,189,248,.25)";
+        t2.removeAttribute("style");
+      }
+    }
+
+    // =========================
+    // UX helpers
+    // =========================
+    function openService(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      el.animate(
+        [{transform:"scale(1)"},{transform:"scale(1.01)"},{transform:"scale(1)"}],
+        {duration:420, easing:"ease-out"}
+      );
+    }
+    function scrollToTop(){ window.scrollTo({top:0, behavior:"smooth"}); }
+
+    function toggleReturnDate(selectEl, wrapId){
+      const wrap = document.getElementById(wrapId);
+      if(!wrap) return;
+      const v = (selectEl.value||"").toUpperCase();
+      if(v.includes("ROUND")) wrap.classList.remove("hidden");
+      else wrap.classList.add("hidden");
+    }
+
+    // =========================
+    // QR
+    // =========================
+    function makeQR(containerId, text){
+      const el = document.getElementById(containerId);
+      if(!el) return;
+      el.innerHTML = "";
+      // QRCode lib draws canvas
+      QRCode.toCanvas(text, { width: 140, margin: 1 }, function (err, canvas) {
+        if(err) { el.textContent = "QR unavailable"; return; }
+        canvas.style.borderRadius = "14px";
+        canvas.style.display = "block";
+        canvas.style.width = "100%";
+        canvas.style.height = "auto";
+        el.appendChild(canvas);
+      });
+    }
+
+    // =========================
+    // Copy helpers
+    // =========================
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText((txt||"").toString());
+        toast("Copied");
+      }catch(e){
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = (txt||"").toString();
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        toast("Copied");
+      }
+    }
+
+    // =========================
+    // Review modal state
+    // =========================
+    let CURRENT = {
+      ref: null,
+      service: null,
+      tags: null,
+      desk: "EG",
+      summaryText: "",
+      waTarget: OPS_WA_EG,
+      emailTo: OPS_EMAIL
+    };
+
+    function generateRef(){
+      // 5-digit
+      return Math.floor(Math.random() * 90000 + 10000).toString();
+    }
+
+    function normalizeValue(el){
+      if(!el) return "";
+      const tag = (el.tagName||"").toLowerCase();
+      const type = (el.getAttribute("type")||"").toLowerCase();
+      const label = el.getAttribute("data-label") || el.name || "Field";
+      let val = "";
+
+      if(tag === "input" && type === "checkbox"){
+        val = el.checked ? "Yes" : "No";
+      } else if(tag === "select"){
+        val = el.value || "";
+      } else {
+        val = (el.value || "").toString().trim();
+      }
+      // Skip empty optional fields (except checkboxes)
+      if(tag !== "input" || type !== "checkbox"){
+        if(!val) return { label, val: "" };
+      }
+      return { label, val };
+    }
+
+    function buildSummaryFromForm(form, ref){
+      const service = form.getAttribute("data-service") || "Daral request";
+      const tags = form.getAttribute("data-tags") || "";
+      const fields = Array.from(form.querySelectorAll("[data-label]"));
+      const lines = [];
+
+      lines.push("DARAL — REQUEST");
+      lines.push(`TYPE: ${service}`);
+      lines.push(`REF: ${ref}`);
+      if(tags) lines.push(`TAGS: ${tags}`);
+      lines.push("────────────────────");
+
+      // collect
+      fields.forEach(el=>{
+        const {label, val} = normalizeValue(el);
+        if(val === "") return;
+        lines.push(`${label}: ${val}`);
+      });
+
+      lines.push("────────────────────");
+      lines.push(OPERATING_HOURS);
+      lines.push(TYPICAL_RESPONSE);
+      lines.push(COMPLIANCE_LINE);
+      lines.push(NO_CARD_LINE);
+      lines.push("Sent via Daral portal");
+
+      return { service, tags, text: lines.join("\n") };
+    }
+
+    function getDesk(form){
+      const d = (new FormData(form).get("desk") || "EG").toString().toUpperCase();
+      return (d === "SD") ? "SD" : "EG";
+    }
+
+    function deskToWhatsApp(desk){
+      return desk === "SD" ? OPS_WA_SD : OPS_WA_EG;
+    }
+
+    // =========================
+    // Main handler: review first
+    // =========================
+    function reviewBeforeSend(e){
+      e.preventDefault();
+      const form = e.target;
+      // basic logical guard: infants <= adults (if fields exist)
+      const adultsEl = form.querySelector("input[name='adults']");
+      const infantsEl = form.querySelector("input[name='infants']");
+      if(adultsEl && infantsEl){
+        const a = parseInt(adultsEl.value||"0",10);
+        const i = parseInt(infantsEl.value||"0",10);
+        if(i > a){
+          alert("Infants cannot exceed adults.");
+          return false;
+        }
+      }
+
+      const ref = generateRef();
+      const desk = getDesk(form);
+      const waTarget = deskToWhatsApp(desk);
+
+      const built = buildSummaryFromForm(form, ref);
+
+      CURRENT.ref = ref;
+      CURRENT.service = built.service;
+      CURRENT.tags = built.tags;
+      CURRENT.desk = desk;
+      CURRENT.waTarget = waTarget;
+      CURRENT.summaryText = built.text;
+
+      // fill modal
+      document.getElementById("sumService").textContent = built.service;
+      document.getElementById("sumTags").textContent = built.tags;
+      document.getElementById("sumRef").textContent = ref;
+      document.getElementById("summaryBox").textContent = built.text;
+
+      openReview();
+      showRefToast(ref);
+
+      return false;
+    }
+
+    function openReview(){
+      const overlay = document.getElementById("modalOverlay");
+      overlay.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      setTimeout(()=>{ /* focus safety */ }, 10);
+    }
+    function closeReview(){
+      const overlay = document.getElementById("modalOverlay");
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function copySummary(){
+      copyText(CURRENT.summaryText || "");
+    }
+
+    function sendWhatsApp(){
+      const msg = CURRENT.summaryText || "";
+      const url = "https://wa.me/" + (CURRENT.waTarget || OPS_WA_EG) + "?text=" + encodeURIComponent(msg);
+      window.open(url, "_blank");
+      closeReview();
+      return false;
+    }
+
+    function sendEmail(){
+      const subject = `DARAL REF ${CURRENT.ref} — ${CURRENT.service}`;
+      const body = CURRENT.summaryText || "";
+      const url = `mailto:${OPS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+      closeReview();
+      return false;
+    }
+
+    // =========================
+    // Tracking
+    // =========================
+    function openTrack(){
+      document.getElementById("trackOverlay").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      setTimeout(()=>document.getElementById("trackRefInput").focus(), 30);
+    }
+    function closeTrack(){
+      document.getElementById("trackOverlay").classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+    function trackRef(ref){
+      const r = (ref||"").toString().trim();
+      if(!r){ alert("Enter REF first."); return; }
+      const text = `DARAL — STATUS REQUEST\nREF: ${r}\nPlease share the current status / next step.`;
+      const url = "https://wa.me/" + OPS_WA_EG + "?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+      closeTrack();
+    }
+    function trackRefFromModal(){
+      trackRef(CURRENT.ref);
+    }
+
+    // =========================
+    // Small utilities
+    // =========================
+    function toast(msg){
+      // minimal: reuse toast container
+      showRefToast((CURRENT.ref || ""));
+    }
+    function showRefToast(ref){
+      const t = document.getElementById("toast");
+      const r = document.getElementById("toastRef");
+      if(!t || !r) return;
+      r.textContent = ref || "";
+      t.classList.remove("hidden");
+      clearTimeout(showRefToast._t);
+      showRefToast._t = setTimeout(()=>t.classList.add("hidden"), 3500);
+    }
+
+    function mailtoDocs(){
+      const subject = "Daral — Company Documents Request";
+      const body = `Hello Daral,\n\nPlease share the company documents required for corporate onboarding.\n\nCompany/Org:\nCountry:\nContact:\nPurpose:\n\n(If you have a REF, include it here):\nREF:\n\nThanks.`;
+      window.location.href = `mailto:${OPS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function mailtoCorporatePack(){
+      const subject = "Daral — Corporate Pack Request";
+      const body = `Hello Daral,\n\nPlease share the Corporate Pack / service scope for Egypt–Sudan operations.\n\nCompany/Org:\nCountry:\nContact:\n\nThanks.`;
+      window.location.href = `mailto:${OPS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+  </script>
 </body>
 </html>
